@@ -1,7 +1,6 @@
 import 'package:chatbot_app/constants/assets.dart';
 import 'package:chatbot_app/constants/colors.dart';
 import 'package:chatbot_app/constants/text_styles.dart';
-import 'package:chatbot_app/widgets/chat_body.dart';
 import 'package:chatbot_app/widgets/chat_input_field.dart';
 import 'package:chatbot_app/widgets/no_chat_body.dart';
 import 'package:flutter/material.dart';
