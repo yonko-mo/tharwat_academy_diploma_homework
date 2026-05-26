@@ -24,7 +24,10 @@ class OnboardingView extends StatelessWidget {
               style: AppTextStyles.heading2,
             ),
             const SizedBox(height: 84),
-            Image.asset(Assets.onboardingFrame, width: 320, height: 324),
+            Padding(
+              padding: const EdgeInsets.only(left: 28.0, right: 27.0),
+              child: Image.asset(Assets.onboardingFrame),
+            ),
             const SizedBox(height: 130),
             ElevatedButton(
               style: ElevatedButton.styleFrom(

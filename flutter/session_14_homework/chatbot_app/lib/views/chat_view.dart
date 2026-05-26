@@ -3,6 +3,7 @@ import 'package:chatbot_app/constants/colors.dart';
 import 'package:chatbot_app/constants/text_styles.dart';
 import 'package:chatbot_app/widgets/chat_body.dart';
 import 'package:chatbot_app/widgets/chat_input_field.dart';
+import 'package:chatbot_app/widgets/no_chat_body.dart';
 import 'package:flutter/material.dart';
 
 class ChatView extends StatelessWidget {
@@ -31,8 +32,7 @@ class ChatView extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: 6,
-                        height: 6,
+                        padding: const EdgeInsets.all(5),
                         decoration: const ShapeDecoration(
                           color: AppColors.statusColor,
                           shape: OvalBorder(),
@@ -59,7 +59,7 @@ class ChatView extends StatelessWidget {
               SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.all(29.0),
-                  child: ChatBody(),
+                  child: NoChatBody(),
                 ),
               ),
               Positioned(
