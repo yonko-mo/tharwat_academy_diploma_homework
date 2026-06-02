@@ -1,5 +1,5 @@
-import 'package:chatbot_app/constants/assets.dart';
-import 'package:chatbot_app/widgets/category_section.dart';
+import 'package:chatbot_app/core/constants/assets.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/category_section.dart';
 import 'package:flutter/material.dart';
 
 class NoChatBody extends StatelessWidget {

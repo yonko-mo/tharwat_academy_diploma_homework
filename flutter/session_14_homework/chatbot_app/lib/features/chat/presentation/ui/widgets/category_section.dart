@@ -1,6 +1,6 @@
-import 'package:chatbot_app/constants/colors.dart';
-import 'package:chatbot_app/constants/text_styles.dart';
-import 'package:chatbot_app/widgets/suggestion_item.dart';
+import 'package:chatbot_app/core/theme/app_colors.dart';
+import 'package:chatbot_app/core/theme/app_styles.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/suggestion_item.dart';
 import 'package:flutter/material.dart';
 
 class CategorySection extends StatelessWidget {
@@ -23,7 +23,7 @@ class CategorySection extends StatelessWidget {
         const SizedBox(height: 5),
         Text(
           categoryName,
-          style: AppTextStyles.heading1.copyWith(
+          style: AppStyles.heading1.copyWith(
             fontSize: 15,
             color: AppColors.suggestionColor,
           ),

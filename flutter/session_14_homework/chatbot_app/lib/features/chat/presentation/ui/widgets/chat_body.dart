@@ -1,5 +1,5 @@
-import 'package:chatbot_app/widgets/chatbot_answer.dart';
-import 'package:chatbot_app/widgets/user_question.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/chatbot_answer.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/user_question.dart';
 import 'package:flutter/material.dart';
 
 class ChatBody extends StatelessWidget {

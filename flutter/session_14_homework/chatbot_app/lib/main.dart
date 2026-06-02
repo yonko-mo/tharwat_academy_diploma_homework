@@ -1,7 +1,10 @@
-import 'package:chatbot_app/views/splash_view.dart';
+import 'package:chatbot_app/core/shared_preferences_singleton.dart';
+import 'package:chatbot_app/features/splash/presentation/ui/splash_view.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesSingleton.init();
   runApp(const ChatbotApp());
 }
 
@@ -10,9 +13,10 @@ class ChatbotApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
-      home: SplashView(),
+      home: const SplashView(),
     );
   }
 }

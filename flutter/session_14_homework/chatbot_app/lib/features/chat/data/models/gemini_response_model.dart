@@ -34,7 +34,6 @@ class GeminiResponseModel {
     'responseId': responseId,
   };
 
-  /// Get the generated text from the first candidate's first part
   String get generatedText {
     if (candidates.isEmpty || candidates.first.content.parts.isEmpty) {
       return '';
@@ -42,7 +41,6 @@ class GeminiResponseModel {
     return candidates.first.content.parts.first.text;
   }
 
-  /// Get the finish reason from the first candidate
   String get finishReason {
     if (candidates.isEmpty) {
       return '';
@@ -50,21 +48,16 @@ class GeminiResponseModel {
     return candidates.first.finishReason;
   }
 
-  /// Check if the response has valid content
   bool get hasContent =>
       candidates.isNotEmpty &&
       candidates.first.content.parts.isNotEmpty &&
       candidates.first.content.parts.first.text.isNotEmpty;
 
-  /// Get the total number of tokens used in this request
   int get totalTokens => usageMetadata.totalTokenCount;
 
-  /// Get the number of tokens used for the prompt
   int get promptTokens => usageMetadata.promptTokenCount;
 
-  /// Get the number of tokens used for the response
   int get responseTokens => usageMetadata.candidatesTokenCount;
 
-  /// Check if the response was successful (STOP finish reason)
   bool get isSuccessful => finishReason == 'STOP' && hasContent;
 }

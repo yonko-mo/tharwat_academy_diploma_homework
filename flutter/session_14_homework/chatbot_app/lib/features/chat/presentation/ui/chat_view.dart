@@ -1,8 +1,8 @@
-import 'package:chatbot_app/constants/assets.dart';
-import 'package:chatbot_app/constants/colors.dart';
-import 'package:chatbot_app/constants/text_styles.dart';
-import 'package:chatbot_app/widgets/chat_input_field.dart';
-import 'package:chatbot_app/widgets/no_chat_body.dart';
+import 'package:chatbot_app/core/constants/assets.dart';
+import 'package:chatbot_app/core/theme/app_colors.dart';
+import 'package:chatbot_app/core/theme/app_styles.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/chat_body.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/chat_input_field.dart';
 import 'package:flutter/material.dart';
 
 class ChatView extends StatelessWidget {
@@ -15,6 +15,7 @@ class ChatView extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
+          surfaceTintColor: Colors.white,
           title: Row(
             children: [
               Image.asset(Assets.blueRobotIcon, width: 24, height: 36),
@@ -25,7 +26,7 @@ class ChatView extends StatelessWidget {
                 children: [
                   Text(
                     'Gemini',
-                    style: AppTextStyles.heading1.copyWith(fontSize: 20),
+                    style: AppStyles.heading1.copyWith(fontSize: 20),
                   ),
                   const SizedBox(height: 1),
                   Row(
@@ -40,7 +41,7 @@ class ChatView extends StatelessWidget {
                       const SizedBox(width: 8.5),
                       Text(
                         'Online',
-                        style: AppTextStyles.heading2.copyWith(
+                        style: AppStyles.heading2.copyWith(
                           fontSize: 17,
                           color: AppColors.statusColor,
                         ),
@@ -58,7 +59,7 @@ class ChatView extends StatelessWidget {
               SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.all(29.0),
-                  child: NoChatBody(),
+                  child: ChatBody(),
                 ),
               ),
               Positioned(

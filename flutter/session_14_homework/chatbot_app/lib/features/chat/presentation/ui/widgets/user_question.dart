@@ -1,5 +1,5 @@
-import 'package:chatbot_app/constants/colors.dart';
-import 'package:chatbot_app/constants/text_styles.dart';
+import 'package:chatbot_app/core/theme/app_colors.dart';
+import 'package:chatbot_app/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class UserQuestion extends StatelessWidget {
@@ -26,7 +26,7 @@ class UserQuestion extends StatelessWidget {
             ),
             child: Text(
               question,
-              style: AppTextStyles.heading1.copyWith(
+              style: AppStyles.heading1.copyWith(
                 fontSize: 13,
                 color: Colors.white,
               ),

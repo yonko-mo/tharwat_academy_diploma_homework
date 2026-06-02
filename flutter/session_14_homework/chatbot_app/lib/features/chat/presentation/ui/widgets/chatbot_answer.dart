@@ -1,6 +1,6 @@
-import 'package:chatbot_app/constants/assets.dart';
-import 'package:chatbot_app/constants/colors.dart';
-import 'package:chatbot_app/constants/text_styles.dart';
+import 'package:chatbot_app/core/constants/assets.dart';
+import 'package:chatbot_app/core/theme/app_colors.dart';
+import 'package:chatbot_app/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class ChatbotAnswer extends StatelessWidget {
@@ -63,7 +63,7 @@ class ChatbotAnswer extends StatelessWidget {
             ),
             child: Text(
               answer,
-              style: AppTextStyles.heading1.copyWith(
+              style: AppStyles.heading1.copyWith(
                 fontSize: 13,
                 color: AppColors.chatbotAnswerColor,
               ),

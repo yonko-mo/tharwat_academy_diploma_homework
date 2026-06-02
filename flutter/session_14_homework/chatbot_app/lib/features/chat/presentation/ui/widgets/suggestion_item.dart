@@ -1,5 +1,5 @@
-import 'package:chatbot_app/constants/colors.dart';
-import 'package:chatbot_app/constants/text_styles.dart';
+import 'package:chatbot_app/core/theme/app_colors.dart';
+import 'package:chatbot_app/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class SuggestionItem extends StatelessWidget {
@@ -19,7 +19,7 @@ class SuggestionItem extends StatelessWidget {
       child: Text(
         title,
         textAlign: TextAlign.center,
-        style: AppTextStyles.suggestionStyle,
+        style: AppStyles.suggestionStyle,
       ),
     );
   }
