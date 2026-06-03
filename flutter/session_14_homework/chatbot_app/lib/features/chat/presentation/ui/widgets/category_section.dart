@@ -17,27 +17,30 @@ class CategorySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset(categoryIcon, width: 24, height: 24),
-        const SizedBox(height: 5),
-        Text(
-          categoryName,
-          style: AppStyles.heading1.copyWith(
-            fontSize: 15,
-            color: AppColors.suggestionColor,
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(categoryIcon, width: 24, height: 24),
+          const SizedBox(height: 5),
+          Text(
+            categoryName,
+            style: AppStyles.heading1.copyWith(
+              fontSize: 15,
+              color: AppColors.suggestionColor,
+            ),
           ),
-        ),
-        const SizedBox(height: 18),
-        ...List.generate(
-          items.length,
-          (index) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: SuggestionItem(title: items[index]),
+          const SizedBox(height: 18),
+          ...List.generate(
+            items.length,
+            (index) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: SuggestionItem(title: items[index]),
+            ),
           ),
-        ),
-        const SizedBox(height: 30),
-      ],
+          const SizedBox(height: 30),
+        ],
+      ),
     );
   }
 }
