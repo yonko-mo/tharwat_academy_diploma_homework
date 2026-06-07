@@ -1,6 +1,5 @@
-import 'package:chatbot_app/core/theme/app_colors.dart';
 import 'package:chatbot_app/core/theme/app_styles.dart';
-import 'package:chatbot_app/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:chatbot_app/features/chat/presentation/cubit/send%20message/send_message_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +11,7 @@ class ChatInputField extends StatefulWidget {
 }
 
 class _ChatInputFieldState extends State<ChatInputField> {
-  late TextEditingController _controller;
+  late final TextEditingController _controller;
 
   @override
   void initState() {
@@ -26,58 +25,53 @@ class _ChatInputFieldState extends State<ChatInputField> {
     super.dispose();
   }
 
+  void _send() {
+    final message = _controller.text.trim();
+    if (message.isEmpty) return;
+
+    context.read<SendMessageCubit>().sendMessage(message);
+    _controller.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20, left: 29, right: 29),
-      child: Container(
-        decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 56,
+      padding: const EdgeInsets.symmetric(horizontal: 22),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        shadows: const [
+          BoxShadow(
+            color: Color(0x21000000),
+            blurRadius: 20,
+            offset: Offset(5, 4),
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      child: TextField(
+        maxLines: 1,
+        controller: _controller,
+        style: AppStyles.textFieldHintStyle,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          hintText: 'Write your message',
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white),
             borderRadius: BorderRadius.circular(30),
           ),
-          shadows: const [
-            BoxShadow(
-              color: Color(0x21000000),
-              blurRadius: 20,
-              offset: Offset(5, 4),
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: TextField(
-          controller: _controller,
-          style: AppStyles.heading1.copyWith(
-            fontSize: 13,
-            color: AppColors.primaryColor,
+          suffixIcon: IconButton(
+            onPressed: _send,
+            icon: const Icon(Icons.send, color: Colors.blue),
           ),
-          decoration: InputDecoration(
-            hintText: 'Write your message',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.white),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            suffixIcon: IconButton(
-              onPressed: () {
-                final message = _controller.text.trim();
-                if (message.isEmpty) return;
-                context.read<ChatCubit>().sendMessage(message);
-                _controller.clear();
-              },
-              icon: const Icon(Icons.send, color: Colors.blue),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.white),
-              borderRadius: BorderRadius.circular(30),
-            ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(30),
           ),
-          onSubmitted: (_) {
-            final message = _controller.text.trim();
-            if (message.isEmpty) return;
-            context.read<ChatCubit>().sendMessage(message);
-            _controller.clear();
-          },
         ),
+        onSubmitted: (_) => _send(),
       ),
     );
   }

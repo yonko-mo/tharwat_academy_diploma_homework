@@ -18,8 +18,15 @@ class AppStyles {
 
   static const TextStyle suggestionStyle = TextStyle(
     color: AppColors.suggestionColor,
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: 'Nunito',
     fontWeight: FontWeight.w500,
+  );
+
+  static const TextStyle textFieldHintStyle = TextStyle(
+    color: AppColors.primaryColor,
+    fontSize: 13,
+    fontFamily: 'Nunito',
+    fontWeight: FontWeight.w700,
   );
 }

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:chatbot_app/app_constants.dart';
 import 'package:chatbot_app/core/constants/assets.dart';
 import 'package:chatbot_app/core/shared_preferences_singleton.dart';
@@ -16,7 +14,6 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  late final Timer _timer;
   @override
   void initState() {
     super.initState();
@@ -26,7 +23,8 @@ class _SplashViewState extends State<SplashView> {
   void executeNavigation() {
     final bool value = SharedPreferencesSingleton.instance.getBool(AppConstants.onboardingSeen) ?? false;
 
-    _timer = Timer(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
       if (value == true) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -41,12 +39,6 @@ class _SplashViewState extends State<SplashView> {
         );
       }
     });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
   }
 
   @override

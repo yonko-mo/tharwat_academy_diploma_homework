@@ -1,14 +1,10 @@
-import 'package:chatbot_app/core/constants/assets.dart';
-import 'package:chatbot_app/core/theme/app_colors.dart';
-import 'package:chatbot_app/core/theme/app_styles.dart';
 import 'package:chatbot_app/features/chat/presentation/ui/widgets/chat_body.dart';
 import 'package:chatbot_app/features/chat/presentation/ui/widgets/chat_input_field.dart';
-import 'package:chatbot_app/features/chat/presentation/ui/widgets/no_chat_body.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/custom_chat_app_bar.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/initial_chat_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:chatbot_app/features/chat/presentation/cubit/chat_cubit.dart';
-import 'package:chatbot_app/features/chat/data/services/gemini_service.dart';
-import 'package:dio/dio.dart';
+import 'package:chatbot_app/features/chat/presentation/cubit/send%20message/send_message_cubit.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({super.key});
@@ -16,68 +12,51 @@ class ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChatCubit(geminiService: GeminiService(Dio())),
+      create: (context) => SendMessageCubit(),
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           resizeToAvoidBottomInset: true,
-          appBar: AppBar(
-            title: Padding(
-              padding: const EdgeInsets.only(left: 17.0),
-              child: Row(
+          appBar: const CustomChatAppBar(),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: SafeArea(
+              top: false,
+              child: Stack(
                 children: [
-                  Image.asset(Assets.blueRobotIcon, width: 24, height: 36),
-                  const SizedBox(width: 20),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Gemini',
-                        style: AppStyles.heading1.copyWith(fontSize: 20),
-                      ),
-                      const SizedBox(height: 1),
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(5),
-                            decoration: const ShapeDecoration(
-                              color: AppColors.statusColor,
-                              shape: OvalBorder(),
+                  Positioned.fill(
+                    top: 30,
+                    child: BlocConsumer<SendMessageCubit, SendMessageState>(
+                      listener: (context, state) {
+                        if (state is SendMessageFailureState) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(state.errorMessage),
+                              backgroundColor: Colors.red,
                             ),
-                          ),
-                          const SizedBox(width: 8.5),
-                          Text(
-                            'Online',
-                            style: AppStyles.heading2.copyWith(
-                              fontSize: 17,
-                              color: AppColors.statusColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        final hasMessages =
+                            context.read<SendMessageCubit>().messages.isNotEmpty;
+
+                        if (!hasMessages && state is! SendMessageLoadingState) {
+                          return const InitialChatBody();
+                        }
+
+                        return const ChatBody();
+                      },
+                    ),
+                  ),
+                  const Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Center(child: ChatInputField()),
                   ),
                 ],
               ),
-            ),
-          ),
-          body: SafeArea(
-            child: Column(
-              children: [
-                Expanded(
-                  child: BlocBuilder<ChatCubit, ChatState>(
-                    builder: (context, state) {
-                      final cubit = context.read<ChatCubit>();
-                      if (cubit.messages.isEmpty) {
-                        return const NoChatBody();
-                      }
-                      return const ChatBody();
-                    },
-                  ),
-                ),
-                const ChatInputField(),
-              ],
             ),
           ),
         ),
@@ -85,3 +64,4 @@ class ChatView extends StatelessWidget {
     );
   }
 }
+
