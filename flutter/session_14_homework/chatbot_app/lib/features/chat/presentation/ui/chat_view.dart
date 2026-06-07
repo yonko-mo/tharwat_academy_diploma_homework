@@ -37,16 +37,15 @@ class ChatView extends StatelessWidget {
                         }
                       },
                       builder: (context, state) {
-                        final hasMessages = context
-                            .read<SendMessageCubit>()
-                            .messages
-                            .isNotEmpty;
-
-                        if (!hasMessages && state is! SendMessageLoadingState) {
+                        if (state is SendMessageInitialState) {
+                          return const InitialChatBody();
+                        } else if (state is SendMessageLoadingState) {
+                          return ChatBody(messages: state.messages, isLoading: true);
+                        } else if (state is SendMessageSuccessState) {
+                          return ChatBody(messages: state.messages);
+                        } else {
                           return const InitialChatBody();
                         }
-
-                        return const ChatBody();
                       },
                     ),
                   ),

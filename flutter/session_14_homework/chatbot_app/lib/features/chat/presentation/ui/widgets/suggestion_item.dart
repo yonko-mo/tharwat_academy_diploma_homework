@@ -1,5 +1,6 @@
 import 'package:chatbot_app/core/theme/app_colors.dart';
 import 'package:chatbot_app/core/theme/app_styles.dart';
+import 'package:chatbot_app/features/chat/data/models/content_model.dart';
 import 'package:chatbot_app/features/chat/presentation/cubit/send%20message/send_message_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,9 @@ class SuggestionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<SendMessageCubit>().sendMessage(title);
+        final cubit = context.read<SendMessageCubit>();
+        cubit.messages.add(ContentModel.fromUser(title));
+        cubit.sendMessage(cubit.messages);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10.5, horizontal: 16),
@@ -44,4 +47,3 @@ class SuggestionItem extends StatelessWidget {
     );
   }
 }
-

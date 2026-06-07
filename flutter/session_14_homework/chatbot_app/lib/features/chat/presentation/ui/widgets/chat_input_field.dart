@@ -1,4 +1,5 @@
 import 'package:chatbot_app/core/theme/app_styles.dart';
+import 'package:chatbot_app/features/chat/data/models/content_model.dart';
 import 'package:chatbot_app/features/chat/presentation/cubit/send%20message/send_message_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,9 @@ class _ChatInputFieldState extends State<ChatInputField> {
     final message = _controller.text.trim();
     if (message.isEmpty) return;
 
-    context.read<SendMessageCubit>().sendMessage(message);
+    final cubit = context.read<SendMessageCubit>();
+    cubit.messages.add(ContentModel.fromUser(message));
+    cubit.sendMessage(cubit.messages);
     _controller.clear();
   }
 

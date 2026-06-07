@@ -10,20 +10,14 @@ class SendMessageCubit extends Cubit<SendMessageState> {
 
   final List<ContentModel> messages = [];
 
-  Future<void> sendMessage(String text) async {
-    final userMessage = ContentModel.fromUser(text);
-    messages.add(userMessage);
-
-    emit(SendMessageLoadingState());
-
+  Future<void> sendMessage(List<ContentModel> messages) async {
+    emit(SendMessageLoadingState(messages: List.from(messages)));
     try {
-      ContentModel botResponse = await chatRepo.sendMessage(messages);
-
-      messages.add(botResponse);
-
-      emit(SendMessageSuccessState());
+      ContentModel response = await chatRepo.sendMessage(messages);
+      this.messages.add(response);
+      emit(SendMessageSuccessState(messages: List.from(this.messages)));
     } catch (e) {
-      messages.removeLast();
+      this.messages.removeLast();
       emit(SendMessageFailureState(errorMessage: e.toString()));
     }
   }
