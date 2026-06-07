@@ -25,7 +25,6 @@ class ChatView extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    top: 30,
                     child: BlocConsumer<SendMessageCubit, SendMessageState>(
                       listener: (context, state) {
                         if (state is SendMessageFailureState) {
@@ -38,8 +37,10 @@ class ChatView extends StatelessWidget {
                         }
                       },
                       builder: (context, state) {
-                        final hasMessages =
-                            context.read<SendMessageCubit>().messages.isNotEmpty;
+                        final hasMessages = context
+                            .read<SendMessageCubit>()
+                            .messages
+                            .isNotEmpty;
 
                         if (!hasMessages && state is! SendMessageLoadingState) {
                           return const InitialChatBody();
@@ -64,4 +65,3 @@ class ChatView extends StatelessWidget {
     );
   }
 }
-
