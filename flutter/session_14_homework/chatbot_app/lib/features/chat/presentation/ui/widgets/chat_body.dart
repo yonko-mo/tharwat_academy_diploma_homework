@@ -19,11 +19,7 @@ class ChatBody extends StatelessWidget {
         if (index == messages.length) {
           return const Align(
             alignment: Alignment.centerLeft,
-            child: SizedBox(
-              width: 24,
-              height: 24,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            ),
+            child: CircularProgressIndicator(strokeWidth: 2),
           );
         }
 
