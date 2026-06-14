@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatInputField extends StatefulWidget {
-  const ChatInputField({super.key});
+  final List<ContentModel> messages;
+  const ChatInputField({super.key, required this.messages});
 
   @override
   State<ChatInputField> createState() => _ChatInputFieldState();
@@ -24,16 +25,6 @@ class _ChatInputFieldState extends State<ChatInputField> {
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  void _send() {
-    final message = _controller.text.trim();
-    if (message.isEmpty) return;
-
-    final cubit = context.read<SendMessageCubit>();
-    cubit.messages.add(ContentModel.fromUser(message));
-    cubit.sendMessage(cubit.messages);
-    _controller.clear();
   }
 
   @override
@@ -66,7 +57,18 @@ class _ChatInputFieldState extends State<ChatInputField> {
             borderRadius: BorderRadius.circular(30),
           ),
           suffixIcon: IconButton(
-            onPressed: _send,
+            onPressed: () {
+              if (BlocProvider.of<SendMessageCubit>(context).state
+                  is SendMessageFailureState) {
+                widget.messages.removeLast();
+              }
+              var message = ContentModel.fromUser(_controller.text);
+              widget.messages.add(message);
+              BlocProvider.of<SendMessageCubit>(
+                context,
+              ).sendMessage(widget.messages);
+              _controller.clear();
+            },
             icon: const Icon(Icons.send, color: Colors.blue),
           ),
           focusedBorder: OutlineInputBorder(
@@ -74,7 +76,14 @@ class _ChatInputFieldState extends State<ChatInputField> {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        onSubmitted: (_) => _send(),
+        onSubmitted: (value) {
+          var message = ContentModel.fromUser(value);
+          widget.messages.add(message);
+          BlocProvider.of<SendMessageCubit>(
+            context,
+          ).sendMessage(widget.messages);
+          _controller.clear();
+        },
       ),
     );
   }

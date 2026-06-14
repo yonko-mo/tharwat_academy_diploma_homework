@@ -9,16 +9,12 @@ class SendMessageCubit extends Cubit<SendMessageState> {
   SendMessageCubit() : super(SendMessageInitialState());
   final ChatRepo chatRepo = ChatRepo();
 
-  final List<ContentModel> messages = [];
-
   Future<void> sendMessage(List<ContentModel> messages) async {
-    emit(SendMessageLoadingState(messages: List.from(messages)));
+    emit(SendMessageLoadingState());
     try {
-      ContentModel response = await chatRepo.sendMessage(messages);
-      this.messages.add(response);
-      emit(SendMessageSuccessState(messages: List.from(this.messages)));
+      var message = await chatRepo.sendMessage(messages);
+      emit(SendMessageSuccessState(message: message));
     } on ApiException catch (e) {
-      this.messages.removeLast();
       emit(SendMessageFailureState(errorMessage: e.message));
     }
   }

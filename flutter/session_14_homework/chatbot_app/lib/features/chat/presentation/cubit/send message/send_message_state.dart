@@ -5,13 +5,12 @@ sealed class SendMessageState {}
 class SendMessageInitialState extends SendMessageState {}
 
 class SendMessageLoadingState extends SendMessageState {
-  final List<ContentModel> messages;
-  SendMessageLoadingState({required this.messages});
+  SendMessageLoadingState();
 }
 
 class SendMessageSuccessState extends SendMessageState {
-  final List<ContentModel> messages;
-  SendMessageSuccessState({required this.messages});
+  final ContentModel message;
+  SendMessageSuccessState({required this.message});
 }
 
 class SendMessageFailureState extends SendMessageState {

@@ -6,17 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SuggestionItem extends StatelessWidget {
+  final List<ContentModel> messages;
   final String title;
 
-  const SuggestionItem({super.key, required this.title});
+  const SuggestionItem({
+    super.key,
+    required this.title,
+    required this.messages,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final cubit = context.read<SendMessageCubit>();
-        cubit.messages.add(ContentModel.fromUser(title));
-        cubit.sendMessage(cubit.messages);
+        var message = ContentModel.fromUser(title);
+        messages.add(message);
+        BlocProvider.of<SendMessageCubit>(context).sendMessage(messages);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10.5, horizontal: 16),

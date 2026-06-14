@@ -1,14 +1,20 @@
-import 'package:chatbot_app/features/chat/presentation/ui/widgets/chat_body.dart';
+import 'package:chatbot_app/features/chat/data/models/content_model.dart';
 import 'package:chatbot_app/features/chat/presentation/ui/widgets/chat_input_field.dart';
+import 'package:chatbot_app/features/chat/presentation/ui/widgets/chat_view_body_bloc_consumer.dart';
 import 'package:chatbot_app/features/chat/presentation/ui/widgets/custom_chat_app_bar.dart';
-import 'package:chatbot_app/features/chat/presentation/ui/widgets/initial_chat_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chatbot_app/features/chat/presentation/cubit/send%20message/send_message_cubit.dart';
 
-class ChatView extends StatelessWidget {
+class ChatView extends StatefulWidget {
   const ChatView({super.key});
 
+  @override
+  State<ChatView> createState() => _ChatViewState();
+}
+
+class _ChatViewState extends State<ChatView> {
+  List<ContentModel> messages = [];
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -25,35 +31,13 @@ class ChatView extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: BlocConsumer<SendMessageCubit, SendMessageState>(
-                      listener: (context, state) {
-                        if (state is SendMessageFailureState) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(state.errorMessage),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is SendMessageInitialState) {
-                          return const InitialChatBody();
-                        } else if (state is SendMessageLoadingState) {
-                          return ChatBody(messages: state.messages, isLoading: true);
-                        } else if (state is SendMessageSuccessState) {
-                          return ChatBody(messages: state.messages);
-                        } else {
-                          return const InitialChatBody();
-                        }
-                      },
-                    ),
+                    child: ChatViewBodyBlocConsumer(messages: messages),
                   ),
-                  const Positioned(
+                  Positioned(
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    child: Center(child: ChatInputField()),
+                    child: Center(child: ChatInputField(messages: messages)),
                   ),
                 ],
               ),

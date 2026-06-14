@@ -1,5 +1,6 @@
 import 'package:chatbot_app/core/theme/app_colors.dart';
 import 'package:chatbot_app/core/theme/app_styles.dart';
+import 'package:chatbot_app/features/chat/data/models/content_model.dart';
 import 'package:chatbot_app/features/chat/presentation/ui/widgets/suggestion_item.dart';
 import 'package:flutter/material.dart';
 
@@ -7,12 +8,14 @@ class SuggestionsSectionItem extends StatelessWidget {
   final String categoryName;
   final String categoryIcon;
   final List<String> suggestions;
+  final List<ContentModel> messages;
 
   const SuggestionsSectionItem({
     super.key,
     required this.categoryName,
     required this.categoryIcon,
     required this.suggestions,
+    required this.messages,
   });
 
   @override
@@ -34,7 +37,7 @@ class SuggestionsSectionItem extends StatelessWidget {
           ...suggestions.map(
             (suggestion) => Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: SuggestionItem(title: suggestion),
+              child: SuggestionItem(title: suggestion, messages: messages),
             ),
           ),
           const SizedBox(height: 30),
