@@ -4,11 +4,19 @@ A beautiful, modern, and highly responsive Flutter chatbot application powered b
 
 ---
 
+## 🎥 Demo
+
+Check out the chatbot app in action:
+
+
+
+---
+
 ## 🚀 Features
 
 - **Gemini 3.5 Flash Integration**: Real-time AI chat powered by Google's `gemini-3.5-flash` model.
 - **Robust State Management**: Powered by `flutter_bloc` (Cubit) to handle user inputs, loading states, success messages, and connection failures seamlessly.
-- **Dynamic Suggestions**: Quick starter prompt cards (under categories like *Explain*, *Write and Edit*, *Translate*) to quickly test out the model with standard questions.
+- **Dynamic Suggestions**: Quick starter prompt cards (under categories like _Explain_, _Write and Edit_, _Translate_) to quickly test out the model with standard questions.
 - **Failure Recovery / Retry Support**: Enhanced chat flow displaying error/failure bubbles on connection problems with instant "Retry" functionality.
 - **Beautiful & Curated Typography**: Styled using the `Nunito` font family for modern, rounded, and premium UI readability.
 - **Orientation Lock**: Optimized for portrait-only layouts.
@@ -59,24 +67,30 @@ lib/
 ## ⚙️ Getting Started & Setup
 
 ### 1. Prerequisites
+
 Before running the app, ensure you have the [Flutter SDK installed](https://docs.flutter.dev/get-started/install) on your development machine.
 
 ### 2. Clone the Repository
+
 ```bash
 git clone <repository-url>
 cd chatbot_app
 ```
 
 ### 3. Install Dependencies
+
 Run the following command to retrieve all pub packages:
+
 ```bash
 flutter pub get
 ```
 
 ### 4. Configure Gemini API Key
+
 To authenticate with Google's generative language API, you will need a Gemini API Key. You can get one from the [Google AI Studio](https://aistudio.google.com/).
 
 Once you have your API Key:
+
 1. Create a file named `secrets.dart` in the `lib/` directory:
    ```bash
    # In chatbot_app/lib/
@@ -87,10 +101,12 @@ Once you have your API Key:
    const apiKey = 'YOUR_GEMINI_API_KEY_HERE';
    ```
 
-*(Note: Ensure that `secrets.dart` is added to your `.gitignore` to prevent committing sensitive keys to public repositories).*
+_(Note: Ensure that `secrets.dart` is added to your `.gitignore` to prevent committing sensitive keys to public repositories)._
 
 ### 5. Running the Application
+
 Connect a device or emulator, then execute:
+
 ```bash
 flutter run
 ```
