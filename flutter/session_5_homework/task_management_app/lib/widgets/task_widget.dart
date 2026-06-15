@@ -49,7 +49,7 @@ class _TaskWidgetState extends State<TaskWidget> {
           ),
         ),
         subtitle: Text(
-          'Created: ${widget.task.date.day}/${widget.task.date.month}/${widget.task.date.year}',
+          'Created: ${widget.task.date}',
         ),
         trailing: IconButton(
           onPressed: widget.onDelete,

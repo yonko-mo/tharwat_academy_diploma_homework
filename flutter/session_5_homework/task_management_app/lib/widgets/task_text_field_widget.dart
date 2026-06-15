@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/models/task_managment.dart';
+import 'package:intl/intl.dart';
+import 'package:task_management_app/models/task_management.dart';
 import 'package:task_management_app/models/task_model.dart';
 
 class TaskTextFieldWidget extends StatefulWidget {
-  final TaskManagment taskManagment;
+  final TaskManagement taskManagement;
   final void Function() updateTasks;
 
   const TaskTextFieldWidget({
     super.key,
-    required this.taskManagment,
+    required this.taskManagement,
     required this.updateTasks,
   });
 
@@ -75,8 +76,12 @@ class _TaskTextFieldWidgetState extends State<TaskTextFieldWidget> {
               ),
             ),
             onPressed: () {
-              final task = TaskModel(title: title, date: DateTime.now());
-              widget.taskManagment.addTask(task);
+              var currentDate = DateTime.now();
+              var formattedCurrentDate = DateFormat(
+                'dd-MMM-yyyy',
+              ).format(currentDate);
+              final task = TaskModel(title: title, date: formattedCurrentDate);
+              widget.taskManagement.addTask(task);
               widget.updateTasks();
               controller.clear();
             },

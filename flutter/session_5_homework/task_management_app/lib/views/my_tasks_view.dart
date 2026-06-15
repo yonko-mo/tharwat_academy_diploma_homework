@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_app/models/task_managment.dart';
+import 'package:task_management_app/models/task_management.dart';
 import 'package:task_management_app/widgets/empty_tasks_widget.dart';
 import 'package:task_management_app/widgets/task_text_field_widget.dart';
 import 'package:task_management_app/widgets/tasks_list_view_widget.dart';
@@ -12,7 +12,7 @@ class MyTasksView extends StatefulWidget {
 }
 
 class _MyTasksViewState extends State<MyTasksView> {
-  final TaskManagment taskManagment = TaskManagment();
+  final TaskManagement taskManagement = TaskManagement();
 
   void updateTasks() {
     setState(() {});
@@ -31,15 +31,15 @@ class _MyTasksViewState extends State<MyTasksView> {
       body: Column(
         children: [
           Expanded(
-            child: taskManagment.tasks.isEmpty
+            child: taskManagement.tasks.isEmpty
                 ? const Center(child: EmptyTasksWidget())
                 : TasksListViewWidget(
-                    taskManagment: taskManagment,
+                    taskManagement: taskManagement,
                     updateTasks: updateTasks,
                   ),
           ),
           TaskTextFieldWidget(
-            taskManagment: taskManagment,
+            taskManagement: taskManagement,
             updateTasks: updateTasks,
           ),
         ],
