@@ -1,6 +1,6 @@
 # Task Management App
 
-A simple Flutter task management app for creating and tracking daily tasks.
+A simple Flutter task management app for creating and tracking daily tasks, built with **clean feature-first architecture**.
 
 The app lets users add new tasks, mark tasks as completed, delete tasks, and view a friendly empty state when no tasks are available.
 
@@ -11,8 +11,9 @@ The app lets users add new tasks, mark tasks as completed, delete tasks, and vie
 - Mark tasks as completed or active.
 - Show completed tasks with a strikethrough style.
 - Delete tasks from the list.
-- Display each task creation date.
+- Display each task's creation date.
 - Show an empty-state message when the task list is empty.
+- Tasks are persisted locally using Hive (data survives app restarts).
 
 ## Demo
 
@@ -20,25 +21,56 @@ https://github.com/user-attachments/assets/729b873d-0608-4d4d-99ed-b4c9c33a38ec
 
 ## Tech Stack
 
-- Flutter
-- Dart
+- **Flutter** & **Dart**
+- **Cubit** (flutter_bloc) for state management
+- **Hive** for local data persistence
+- **intl** for date formatting
 - Material Design widgets
+
+## Architecture
+
+The project follows a **clean feature-first architecture** with clear separation of concerns:
+
+- **Repository Pattern** — Cubits don't access Hive directly; all data operations go through `TasksRepo`.
+- **Feature-first structure** — Each feature is self-contained under `features/`.
+- **Separation of concerns** — Data layer (models, repos), Presentation layer (cubits, UI) are clearly separated.
 
 ## Project Structure
 
 ```text
 lib/
-  main.dart
-  models/
-    task_model.dart
-    task_managment.dart
-  views/
-    my_tasks_view.dart
-  widgets/
-    empty_tasks_widget.dart
-    task_text_field_widget.dart
-    task_widget.dart
-    tasks_list_view_widget.dart
+├── main.dart
+├── core/
+│   ├── bloc/
+│   │   └── simple_bloc_observer.dart
+│   ├── constants/
+│   │   └── app_constants.dart
+│   └── theme/
+│       ├── app_colors.dart
+│       └── app_styles.dart
+└── features/
+    └── tasks/
+        ├── data/
+        │   ├── models/
+        │   │   ├── task_model.dart
+        │   │   └── task_model.g.dart
+        │   └── repos/
+        │       └── tasks_repo.dart
+        └── presentation/
+            ├── cubit/
+            │   ├── add_task/
+            │   │   ├── add_task_cubit.dart
+            │   │   └── add_task_state.dart
+            │   └── tasks/
+            │       ├── tasks_cubit.dart
+            │       └── tasks_state.dart
+            └── ui/
+                ├── my_tasks_view.dart
+                └── widgets/
+                    ├── add_task_text_field.dart
+                    ├── no_tasks_widget.dart
+                    ├── task_item.dart
+                    └── tasks_list_view_widget.dart
 ```
 
 ## Getting Started
@@ -69,15 +101,20 @@ Run the app on an available emulator, simulator, browser, or connected device:
 flutter run
 ```
 
-## Main Files
+## Key Files
 
-- `lib/main.dart` starts the app and loads `MyTasksView`.
-- `lib/views/my_tasks_view.dart` builds the main task screen.
-- `lib/models/task_model.dart` defines the task data model.
-- `lib/models/task_managment.dart` manages the task list.
-- `lib/widgets/` contains reusable UI widgets for the task input, list, task item, and empty state.
+| File | Description |
+|------|-------------|
+| `main.dart` | App entry point — initializes Hive, registers adapters, provides `TasksCubit` |
+| `tasks_repo.dart` | Repository that handles all Hive data operations |
+| `tasks_cubit.dart` | Manages task list state (fetch, toggle, delete) |
+| `add_task_cubit.dart` | Manages add-task flow (loading, success, failure) |
+| `my_tasks_view.dart` | Main screen — displays task list or empty state |
+| `add_task_text_field.dart` | Input field with add button and loading indicator |
+| `task_item.dart` | Single task card with toggle and delete actions |
+| `task_model.dart` | Hive-annotated data model for tasks |
 
 ## Notes
 
-- Tasks are stored in memory, so they reset when the app restarts.
-- The current app does not use a database or external API.
+- Tasks are stored locally using **Hive** and persist across app restarts.
+- The app does not use any external API or remote database.
