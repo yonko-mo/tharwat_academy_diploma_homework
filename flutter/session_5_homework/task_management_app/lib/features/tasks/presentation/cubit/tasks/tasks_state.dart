@@ -5,4 +5,8 @@ sealed class TasksState {}
 
 final class TasksInitial extends TasksState {}
 
-final class TasksSuccess extends TasksState {}
+final class TasksSuccess extends TasksState {
+  final List<TaskModel> tasks;
+
+  TasksSuccess(this.tasks);
+}
