@@ -17,7 +17,7 @@ The app lets users add new tasks, mark tasks as completed, delete tasks, and vie
 
 ## Demo
 
-<!-- Add your demo video/gif here -->
+https://github.com/user-attachments/assets/83b46959-a80d-4fb8-90ab-f4b489ab76e7
 
 ## Tech Stack
 
