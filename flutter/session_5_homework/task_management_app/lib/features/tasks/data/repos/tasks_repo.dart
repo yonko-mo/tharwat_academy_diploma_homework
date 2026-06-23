@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:task_management_app/core/constants/app_constants.dart';
 import 'package:task_management_app/features/tasks/data/models/task_model.dart';
 

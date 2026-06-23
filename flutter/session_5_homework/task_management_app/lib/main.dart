@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import 'package:task_management_app/core/bloc/simple_bloc_observer.dart';
 import 'package:task_management_app/core/constants/app_constants.dart';
 import 'package:task_management_app/features/tasks/data/models/task_model.dart';
