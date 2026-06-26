@@ -31,4 +31,18 @@ class AppStyles {
     fontWeight: FontWeight.w300,
     height: 1.57,
   );
+
+  static const authHeaderStyle = TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  );
+
+  static const textFormFieldStyle = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+  );
 }

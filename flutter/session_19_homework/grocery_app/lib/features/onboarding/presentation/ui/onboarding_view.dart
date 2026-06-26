@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/core/constants/assets.dart';
+import 'package:grocery_app/features/authentication/register/presentation/ui/register_view.dart';
+import 'package:grocery_app/features/authentication/login/presentation/ui/login_view.dart';
 import 'package:grocery_app/features/onboarding/data/models/onboarding_item_model.dart';
 import 'package:grocery_app/features/onboarding/presentation/ui/widgets/onboarding_buttons.dart';
 import 'package:grocery_app/features/onboarding/presentation/ui/widgets/onboarding_dots_indicator.dart';
@@ -88,10 +90,14 @@ class _OnboardingViewState extends State<OnboardingView> {
                 );
               },
               onCreateAccountPressed: () {
-                // Handle create account
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const RegisterView()),
+                );
               },
               onLoginPressed: () {
-                // Handle login
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LoginView()),
+                );
               },
             ),
             const SizedBox(height: 48),

@@ -146,10 +146,6 @@ class Assets {
   /// assets/fonts/Poppins/Poppins-ThinItalic.ttf
   static const String assetsFontsPoppinsPoppinsThinItalic = "assets/fonts/Poppins/Poppins-ThinItalic.ttf";
 
-  /// Assets for assetsImagesPngsAuthenticationImage
-  /// assets/images/Pngs/authentication_image.png
-  static const String assetsImagesPngsAuthenticationImage = "assets/images/Pngs/authentication_image.png";
-
   /// Assets for assetsImagesPngsLogoIcon
   /// assets/images/Pngs/logo_icon.png
   static const String assetsImagesPngsLogoIcon = "assets/images/Pngs/logo_icon.png";
@@ -161,5 +157,13 @@ class Assets {
   /// Assets for assetsImagesPngsOnboardingImage2
   /// assets/images/Pngs/onboarding_image2.png
   static const String assetsImagesPngsOnboardingImage2 = "assets/images/Pngs/onboarding_image2.png";
+
+  /// Assets for assetsImagesPngsRegisterImage
+  /// assets/images/Pngs/register_image.png
+  static const String assetsImagesPngsRegisterImage = "assets/images/Pngs/register_image.png";
+
+  /// Assets for assetsImagesPngsSigninImage
+  /// assets/images/Pngs/signin_image.png
+  static const String assetsImagesPngsSigninImage = "assets/images/Pngs/signin_image.png";
 }
 
