@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
+import 'package:grocery_app/core/theme/app_styles.dart';
 import 'package:grocery_app/core/widgets/custom_button.dart';
 
 class RegistrationSuccessDialog extends StatelessWidget {
@@ -17,13 +18,13 @@ class RegistrationSuccessDialog extends StatelessWidget {
         width: 333,
         height: 461,
         decoration: ShapeDecoration(
-          color: const Color(0xFFF2F2F2),
+          color: AppColors.lightGrayBackground,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
           ),
           shadows: const [
             BoxShadow(
-              color: Color(0x3F000000),
+              color: AppColors.dialogShadowColor,
               blurRadius: 4,
               offset: Offset(0, 4),
               spreadRadius: 0,
@@ -38,12 +39,7 @@ class RegistrationSuccessDialog extends StatelessWidget {
               child: Text(
                 'Congratulations!',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFFE67F1E),
-                  fontSize: 24,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                ),
+                style: AppStyles.dialogTitleStyle,
               ),
             ),
             const SizedBox(height: 12),
@@ -51,13 +47,7 @@ class RegistrationSuccessDialog extends StatelessWidget {
               child: Text(
                 userName,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Color(0xFF7A1E76),
-                  fontSize: 12.92,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                  height: 1.09,
-                ),
+                style: AppStyles.dialogUserNameStyle,
               ),
             ),
             const Spacer(),

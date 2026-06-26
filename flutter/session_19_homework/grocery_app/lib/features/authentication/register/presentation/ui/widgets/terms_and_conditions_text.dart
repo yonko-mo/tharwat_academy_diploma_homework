@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
+import 'package:grocery_app/core/theme/app_styles.dart';
 
 class TermsAndConditionsText extends StatelessWidget {
   const TermsAndConditionsText({super.key});
@@ -10,12 +11,7 @@ class TermsAndConditionsText extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           text: 'By tapping Sign up you accept all ',
-          style: TextStyle(
-            color: Color(0xFF2F2F2F),
-            fontSize: 14,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w400,
-          ),
+          style: AppStyles.termsAndConditionsStyle,
           children: [
             TextSpan(
               text: 'terms',

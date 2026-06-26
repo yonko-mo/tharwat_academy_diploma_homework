@@ -4,8 +4,9 @@ import 'package:grocery_app/core/theme/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool withArrow;
+  final bool isLoading;
   final Color? backgroundColor;
   final Color? textColor;
   final BorderSide? border;
@@ -15,6 +16,7 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.withArrow = false,
+    this.isLoading = false,
     this.backgroundColor,
     this.textColor,
     this.border,
@@ -34,23 +36,36 @@ class CustomButton extends StatelessWidget {
             side: border ?? BorderSide.none,
           ),
         ),
-        onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            Text(
-              text,
-              style: AppStyles.buttonTextStyle.copyWith(
-                color: textColor ?? AppStyles.buttonTextStyle.color,
+        onPressed: isLoading ? null : onPressed,
+        child: isLoading
+            ? const SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2.5,
+                ),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(),
+                  Text(
+                    text,
+                    style: AppStyles.buttonTextStyle.copyWith(
+                      color: textColor ?? AppStyles.buttonTextStyle.color,
+                    ),
+                  ),
+                  const Spacer(),
+                  withArrow
+                      ? Icon(
+                          Icons.arrow_forward,
+                          color: textColor ?? Colors.white,
+                          size: 24,
+                        )
+                      : const SizedBox.shrink(),
+                ],
               ),
-            ),
-            const Spacer(),
-            withArrow
-                ? Icon(Icons.arrow_forward, color: textColor ?? Colors.white, size: 24)
-                : const SizedBox.shrink(),
-          ],
-        ),
       ),
     );
   }

@@ -35,12 +35,7 @@ class CustomTextFormField extends StatelessWidget {
         contentPadding: const EdgeInsets.only(left: 22, top: 10, bottom: 10),
         hintText: hintText,
         suffixIcon: suffixIcon,
-        hintStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 15,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w400,
-        ),
+        hintStyle: AppStyles.textFormFieldHintStyle,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
           borderSide: const BorderSide(width: 1, color: AppColors.primaryColor),

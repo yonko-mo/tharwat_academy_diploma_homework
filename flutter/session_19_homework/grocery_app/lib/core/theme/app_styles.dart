@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/core/theme/app_colors.dart';
 
 class AppStyles {
   static const TextStyle buttonTextStyle = TextStyle(
@@ -44,5 +45,55 @@ class AppStyles {
     fontSize: 16,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle forgotPasswordStyle = TextStyle(
+    color: AppColors.primaryColor,
+    fontSize: 14,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle homeGoodMorningStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    color: Colors.grey,
+  );
+
+  static const TextStyle homeUserNameStyle = TextStyle(
+    fontSize: 20,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
+
+  static const TextStyle textFormFieldHintStyle = TextStyle(
+    color: Colors.black,
+    fontSize: 15,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle termsAndConditionsStyle = TextStyle(
+    color: AppColors.darkGray,
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle dialogTitleStyle = TextStyle(
+    color: AppColors.accentOrange,
+    fontSize: 24,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w700,
+  );
+
+  static const TextStyle dialogUserNameStyle = TextStyle(
+    color: AppColors.accentPurple,
+    fontSize: 12.92,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w700,
+    height: 1.09,
   );
 }
