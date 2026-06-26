@@ -146,20 +146,20 @@ class Assets {
   /// assets/fonts/Poppins/Poppins-ThinItalic.ttf
   static const String assetsFontsPoppinsPoppinsThinItalic = "assets/fonts/Poppins/Poppins-ThinItalic.ttf";
 
-  /// Assets for assetsImagesSvgsAuthenticationImage
-  /// assets/images/svgs/authentication_image.svg
-  static const String assetsImagesSvgsAuthenticationImage = "assets/images/svgs/authentication_image.svg";
+  /// Assets for assetsImagesPngsAuthenticationImage
+  /// assets/images/Pngs/authentication_image.png
+  static const String assetsImagesPngsAuthenticationImage = "assets/images/Pngs/authentication_image.png";
 
-  /// Assets for assetsImagesSvgsLogoIcon
-  /// assets/images/svgs/logo_icon.svg
-  static const String assetsImagesSvgsLogoIcon = "assets/images/svgs/logo_icon.svg";
+  /// Assets for assetsImagesPngsLogoIcon
+  /// assets/images/Pngs/logo_icon.png
+  static const String assetsImagesPngsLogoIcon = "assets/images/Pngs/logo_icon.png";
 
-  /// Assets for assetsImagesSvgsOnboardingImage1
-  /// assets/images/svgs/onboarding_image1.svg
-  static const String assetsImagesSvgsOnboardingImage1 = "assets/images/svgs/onboarding_image1.svg";
+  /// Assets for assetsImagesPngsOnboardingImage1
+  /// assets/images/Pngs/onboarding_image1.png
+  static const String assetsImagesPngsOnboardingImage1 = "assets/images/Pngs/onboarding_image1.png";
 
-  /// Assets for assetsImagesSvgsOnboardingImage2
-  /// assets/images/svgs/onboarding_image2.svg
-  static const String assetsImagesSvgsOnboardingImage2 = "assets/images/svgs/onboarding_image2.svg";
+  /// Assets for assetsImagesPngsOnboardingImage2
+  /// assets/images/Pngs/onboarding_image2.png
+  static const String assetsImagesPngsOnboardingImage2 = "assets/images/Pngs/onboarding_image2.png";
 }
 

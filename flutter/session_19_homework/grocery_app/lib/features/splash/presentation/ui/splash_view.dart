@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
-import 'package:grocery_app/features/onboarding/presentation/onboarding_view.dart';
+import 'package:grocery_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -34,8 +33,8 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
-        child: SvgPicture.asset(
-          Assets.assetsImagesSvgsLogoIcon,
+        child: Image.asset(
+          Assets.assetsImagesPngsLogoIcon,
           width: MediaQuery.sizeOf(context).width * 0.55,
         ),
       ),

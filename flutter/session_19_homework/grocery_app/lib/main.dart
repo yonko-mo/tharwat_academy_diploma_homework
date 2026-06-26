@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/features/splash/presentation/splash_view.dart';
+import 'package:grocery_app/features/splash/presentation/ui/splash_view.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();

@@ -6,12 +6,18 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final bool withArrow;
+  final Color? backgroundColor;
+  final Color? textColor;
+  final BorderSide? border;
 
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.withArrow = false,
+    this.backgroundColor,
+    this.textColor,
+    this.border,
   });
 
   @override
@@ -21,9 +27,11 @@ class CustomButton extends StatelessWidget {
       height: 60,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: backgroundColor ?? AppColors.primaryColor,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
+            side: border ?? BorderSide.none,
           ),
         ),
         onPressed: onPressed,
@@ -33,11 +41,13 @@ class CustomButton extends StatelessWidget {
             const Spacer(),
             Text(
               text,
-              style: AppStyles.buttonTextStyle
+              style: AppStyles.buttonTextStyle.copyWith(
+                color: textColor ?? AppStyles.buttonTextStyle.color,
+              ),
             ),
             const Spacer(),
             withArrow
-                ? const Icon(Icons.arrow_forward, color: Colors.white, size: 24)
+                ? Icon(Icons.arrow_forward, color: textColor ?? Colors.white, size: 24)
                 : const SizedBox.shrink(),
           ],
         ),
