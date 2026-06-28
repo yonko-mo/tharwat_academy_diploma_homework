@@ -1,11 +1,11 @@
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// abstract class SharedPreferencesSingleton {
-//   static SharedPreferences? _instance;
+abstract class SharedPreferencesSingleton {
+  static SharedPreferences? _instance;
 
-//   static Future<void> init() async {
-//     _instance ??= await SharedPreferences.getInstance();
-//   }
+  static Future<void> init() async {
+    _instance ??= await SharedPreferences.getInstance();
+  }
 
-//   static SharedPreferences get instance => _instance!;
-// }
+  static SharedPreferences get instance => _instance!;
+}

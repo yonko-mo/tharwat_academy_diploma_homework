@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/app_constants.dart';
 import 'package:grocery_app/core/constants/assets.dart';
+import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
+import 'package:grocery_app/features/home/presentation/ui/home_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grocery_app/features/authentication/login/presentation/ui/login_view.dart';
 import 'package:grocery_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -18,16 +23,38 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void executeNavigation() {
+    final bool hasSeenOnboarding =
+        SharedPreferencesSingleton.instance.getBool(
+          AppConstants.onboardingSeen,
+        ) ??
+        false;
+
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const OnboardingView(),
-        ),
-      );
+      if (!hasSeenOnboarding) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (BuildContext context) => const OnboardingView(),
+          ),
+        );
+      } else {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const HomeView(),
+            ),
+          );
+        } else {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const LoginView(),
+            ),
+          );
+        }
+      }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,9 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery_app/app_constants.dart';
+import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/core/helper/validators.dart';
+
 import 'package:grocery_app/core/theme/app_styles.dart';
 import 'package:grocery_app/core/widgets/custom_button.dart';
 import 'package:grocery_app/features/authentication/login/presentation/cubits/login_cubit.dart';
@@ -33,6 +36,10 @@ class _LoginViewState extends State<LoginView> {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
+            SharedPreferencesSingleton.instance.setBool(
+              AppConstants.onboardingSeen,
+              true,
+            );
             showSnackBar(context, 'login success');
             Navigator.pushReplacement(
               context,
