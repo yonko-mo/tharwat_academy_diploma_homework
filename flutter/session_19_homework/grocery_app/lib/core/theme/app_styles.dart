@@ -96,4 +96,23 @@ class AppStyles {
     fontWeight: FontWeight.w700,
     height: 1.09,
   );
+
+  static const TextStyle sectionHeaderStyle = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle adTitleStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle termsAndConditionsLinkStyle = TextStyle(
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.bold,
+  );
 }

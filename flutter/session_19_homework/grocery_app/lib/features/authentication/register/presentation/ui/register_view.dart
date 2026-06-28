@@ -18,63 +18,63 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RegisterCubit(
-        AuthRepository(
-          authService: FirebaseAuthService(),
-          firestoreService: FirestoreService(),
-        ),
-      ),
-      child: BlocConsumer<RegisterCubit, RegisterState>(
-        listener: (context, state) {
-          if (state is RegisterSuccessState) {
-            SharedPreferencesSingleton.instance.setBool(
-              AppConstants.onboardingSeen,
-              true,
-            );
-            showSnackBar(context, 'registration success');
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) =>
-                  RegistrationSuccessDialog(userName: state.userName),
-            );
-          } else if (state is RegisterErrorState) {
-            showSnackBar(context, state.message);
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            body: Stack(
-              children: [
-                AuthBackground(
-                  height: MediaQuery.sizeOf(context).height * 0.4,
-                  onBack: () => Navigator.of(context).pop(),
-                  imagePath: Assets.assetsImagesPngsRegisterImage,
+    return Scaffold(
+      body: Stack(
+        children: [
+          AuthBackground(
+            height: MediaQuery.sizeOf(context).height * 0.4,
+            onBack: () => Navigator.of(context).pop(),
+            imagePath: Assets.assetsImagesPngsRegisterImage,
+          ),
+          Positioned(
+            top: MediaQuery.sizeOf(context).height * 0.35,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(32),
+              ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 29.0,
+                  vertical: 37.0,
                 ),
-                Positioned(
-                  top: MediaQuery.sizeOf(context).height * 0.35,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 29.0,
-                        vertical: 37.0,
-                      ),
-                      child: RegisterForm(state: state),
+                child: BlocProvider(
+                  create: (context) => RegisterCubit(
+                    AuthRepository(
+                      authService: FirebaseAuthService(),
+                      firestoreService: FirestoreService(),
                     ),
                   ),
+                  child: BlocConsumer<RegisterCubit, RegisterState>(
+                    listener: (context, state) {
+                      if (state is RegisterSuccessState) {
+                        SharedPreferencesSingleton.instance.setBool(
+                          AppConstants.onboardingSeen,
+                          true,
+                        );
+                        showSnackBar(context, 'registration success');
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) =>
+                              RegistrationSuccessDialog(userName: state.userName),
+                        );
+                      } else if (state is RegisterErrorState) {
+                        showSnackBar(context, state.message);
+                      }
+                    },
+                    builder: (context, state) {
+                      return RegisterForm(state: state);
+                    },
+                  ),
                 ),
-              ],
+              ),
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

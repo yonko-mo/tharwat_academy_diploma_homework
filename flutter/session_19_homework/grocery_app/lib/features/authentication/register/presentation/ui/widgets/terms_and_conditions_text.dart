@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/core/theme/app_colors.dart';
 import 'package:grocery_app/core/theme/app_styles.dart';
 
 class TermsAndConditionsText extends StatelessWidget {
@@ -15,18 +14,12 @@ class TermsAndConditionsText extends StatelessWidget {
           children: [
             TextSpan(
               text: 'terms',
-              style: TextStyle(
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppStyles.termsAndConditionsLinkStyle,
             ),
             TextSpan(text: ' and '),
             TextSpan(
               text: 'condition',
-              style: TextStyle(
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppStyles.termsAndConditionsLinkStyle,
             ),
           ],
         ),

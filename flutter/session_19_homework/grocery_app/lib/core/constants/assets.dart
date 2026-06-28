@@ -110,8 +110,35 @@ class Assets {
   /// Assets for assetsFontsPoppinsPoppinsThinItalic
   static const String assetsFontsPoppinsPoppinsThinItalic = "assets/fonts/Poppins/Poppins-ThinItalic.ttf";
 
+  /// Assets for assetsImagesPngsAuthenticationImage
+  static const String assetsImagesPngsAuthenticationImage = "assets/images/Pngs/authentication_image.png";
+
+  /// Assets for assetsImagesPngsAvocadoImage
+  static const String assetsImagesPngsAvocadoImage = "assets/images/Pngs/avocado_image.png";
+
+  /// Assets for assetsImagesPngsBrocoliImage
+  static const String assetsImagesPngsBrocoliImage = "assets/images/Pngs/brocoli_image.png";
+
+  /// Assets for assetsImagesPngsDairyImage
+  static const String assetsImagesPngsDairyImage = "assets/images/Pngs/dairy_image.png";
+
+  /// Assets for assetsImagesPngsFreshFruitsDeliveryImage
+  static const String assetsImagesPngsFreshFruitsDeliveryImage = "assets/images/Pngs/fresh_fruits_delivery_image.png";
+
+  /// Assets for assetsImagesPngsFruitsImage
+  static const String assetsImagesPngsFruitsImage = "assets/images/Pngs/fruits_image.png";
+
+  /// Assets for assetsImagesPngsGrapesImage
+  static const String assetsImagesPngsGrapesImage = "assets/images/Pngs/grapes_image.png";
+
   /// Assets for assetsImagesPngsLogoIcon
   static const String assetsImagesPngsLogoIcon = "assets/images/Pngs/logo_icon.png";
+
+  /// Assets for assetsImagesPngsMushroomImage
+  static const String assetsImagesPngsMushroomImage = "assets/images/Pngs/mushroom_image.png";
+
+  /// Assets for assetsImagesPngsOatsImage
+  static const String assetsImagesPngsOatsImage = "assets/images/Pngs/oats_image.png";
 
   /// Assets for assetsImagesPngsOnboardingImage1
   static const String assetsImagesPngsOnboardingImage1 = "assets/images/Pngs/onboarding_image1.png";
@@ -119,10 +146,16 @@ class Assets {
   /// Assets for assetsImagesPngsOnboardingImage2
   static const String assetsImagesPngsOnboardingImage2 = "assets/images/Pngs/onboarding_image2.png";
 
+  /// Assets for assetsImagesPngsRecommendedRecipeImage
+  static const String assetsImagesPngsRecommendedRecipeImage = "assets/images/Pngs/recommended_recipe_image.png";
+
   /// Assets for assetsImagesPngsRegisterImage
   static const String assetsImagesPngsRegisterImage = "assets/images/Pngs/register_image.png";
 
   /// Assets for assetsImagesPngsSigninImage
   static const String assetsImagesPngsSigninImage = "assets/images/Pngs/signin_image.png";
+
+  /// Assets for assetsImagesPngsTomatoesImage
+  static const String assetsImagesPngsTomatoesImage = "assets/images/Pngs/tomatoes_image.png";
 }
 
