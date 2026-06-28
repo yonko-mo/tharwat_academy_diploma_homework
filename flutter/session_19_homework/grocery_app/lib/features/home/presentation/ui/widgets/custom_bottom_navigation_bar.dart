@@ -31,8 +31,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           });
         },
         backgroundColor: Colors.white,
-        selectedColor: const Color(0xFFF2994A), // Orange color from mockup
-        unSelectedColor: const Color(0xFFB5B5BE), // Grey color from mockup
+        selectedColor: const Color(0xFFF2994A),
+        unSelectedColor: const Color(0xFFB5B5BE),
         iconSize: 28,
         items: [
           CustomNavigationBarItem(
@@ -53,7 +53,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     width: 10,
                     height: 10,
                     decoration: const BoxDecoration(
-                      color: Color(0xFFFFC107), // Amber badge color
+                      color: Color(0xFFFFC107),
                       shape: BoxShape.circle,
                     ),
                   ),
