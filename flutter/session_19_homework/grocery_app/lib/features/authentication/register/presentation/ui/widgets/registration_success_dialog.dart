@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
 import 'package:grocery_app/core/theme/app_styles.dart';
-import 'package:grocery_app/core/widgets/custom_button.dart';
+import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
 
 class RegistrationSuccessDialog extends StatelessWidget {
   final String userName;
@@ -51,7 +51,7 @@ class RegistrationSuccessDialog extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            CustomButton(
+            CustomElevatedButton(
               text: 'SIGN IN',
               backgroundColor: AppColors.primaryColor,
               textColor: Colors.black,

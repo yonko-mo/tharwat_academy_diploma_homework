@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/core/widgets/custom_button.dart';
+import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
 
 class OnboardingButtons extends StatelessWidget {
   final int currentPage;
@@ -22,14 +22,14 @@ class OnboardingButtons extends StatelessWidget {
     if (currentPage == itemCount - 1) {
       return Column(
         children: [
-          CustomButton(
+          CustomElevatedButton(
             text: 'CREATE AN ACCOUNT',
             backgroundColor: Colors.black,
             textColor: Colors.white,
             onPressed: onCreateAccountPressed,
           ),
           const SizedBox(height: 18),
-          CustomButton(
+          CustomElevatedButton(
             text: 'LOGIN',
             backgroundColor: Colors.white,
             textColor: Colors.black,
@@ -40,6 +40,6 @@ class OnboardingButtons extends StatelessWidget {
       );
     }
 
-    return CustomButton(text: 'NEXT', onPressed: onNextPressed);
+    return CustomElevatedButton(text: 'NEXT', onPressed: onNextPressed);
   }
 }

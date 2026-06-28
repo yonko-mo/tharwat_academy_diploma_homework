@@ -8,7 +8,7 @@ import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/core/helper/validators.dart';
 
 import 'package:grocery_app/core/theme/app_styles.dart';
-import 'package:grocery_app/core/widgets/custom_button.dart';
+import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
 import 'package:grocery_app/features/authentication/login/presentation/cubits/login_cubit.dart';
 import 'package:grocery_app/features/authentication/login/presentation/cubits/login_state.dart';
 import 'package:grocery_app/features/authentication/widgets/auth_background.dart';
@@ -125,17 +125,17 @@ class _LoginViewState extends State<LoginView> {
                               ),
                             ),
                             const SizedBox(height: 42),
-                            CustomButton(
+                            CustomElevatedButton(
                               text: 'SIGN IN',
                               isLoading: state is LoginLoading,
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  context
-                                      .read<LoginCubit>()
-                                      .signIn(email!, password!);
+                                  context.read<LoginCubit>().signIn(
+                                    email!,
+                                    password!,
+                                  );
                                 } else {
-                                  showSnackBar(
-                                      context, 'please try again');
+                                  showSnackBar(context, 'please try again');
                                 }
                               },
                             ),

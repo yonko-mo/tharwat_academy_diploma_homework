@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/core/theme/app_styles.dart';
 import 'package:grocery_app/features/onboarding/data/models/onboarding_item_model.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPageItem extends StatelessWidget {
   final OnboardingItemModel item;
 
-  const OnboardingPage({super.key, required this.item});
+  const OnboardingPageItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (item.imageTopSpacing != null) SizedBox(height: item.imageTopSpacing),
+        if (item.imageTopSpacing != null)
+          SizedBox(height: item.imageTopSpacing),
         Image.asset(item.image, width: MediaQuery.sizeOf(context).width),
         SizedBox(height: item.imageToTitleSpacing),
         Text(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
 import 'package:grocery_app/core/theme/app_styles.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final bool withArrow;
@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
   final Color? textColor;
   final BorderSide? border;
 
-  const CustomButton({
+  const CustomElevatedButton({
     super.key,
     required this.text,
     required this.onPressed,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/features/onboarding/data/models/onboarding_item_model.dart';
-import 'package:grocery_app/features/onboarding/presentation/ui/widgets/onboarding_page.dart';
+import 'package:grocery_app/features/onboarding/presentation/ui/widgets/onboarding_page_item.dart';
 
 class OnboardingPageView extends StatelessWidget {
   final PageController pageController;
@@ -21,7 +21,7 @@ class OnboardingPageView extends StatelessWidget {
       itemCount: items.length,
       onPageChanged: onPageChanged,
       itemBuilder: (context, index) {
-        return OnboardingPage(item: items[index]);
+        return OnboardingPageItem(item: items[index]);
       },
     );
   }

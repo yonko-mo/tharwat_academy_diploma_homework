@@ -6,7 +6,7 @@ import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/core/helper/validators.dart';
-import 'package:grocery_app/core/widgets/custom_button.dart';
+import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
 import 'package:grocery_app/features/authentication/register/presentation/cubits/register_cubit.dart';
 import 'package:grocery_app/features/authentication/register/presentation/cubits/register_state.dart';
 import 'package:grocery_app/features/authentication/register/presentation/ui/widgets/registration_success_dialog.dart';
@@ -45,9 +45,8 @@ class _RegisterViewState extends State<RegisterView> {
             showDialog(
               context: context,
               barrierDismissible: false,
-              builder: (context) => RegistrationSuccessDialog(
-                userName: state.userName,
-              ),
+              builder: (context) =>
+                  RegistrationSuccessDialog(userName: state.userName),
             );
           } else if (state is RegisterError) {
             showSnackBar(context, state.message);
@@ -144,20 +143,19 @@ class _RegisterViewState extends State<RegisterView> {
                             const SizedBox(height: 10),
                             const TermsAndConditionsText(),
                             const SizedBox(height: 32),
-                            CustomButton(
+                            CustomElevatedButton(
                               text: 'CREATE AN ACCOUNT',
                               isLoading: state is RegisterLoading,
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
                                   context.read<RegisterCubit>().register(
-                                        email: email!,
-                                        password: password!,
-                                        firstName: firstName!,
-                                        lastName: lastName!,
-                                      );
+                                    email: email!,
+                                    password: password!,
+                                    firstName: firstName!,
+                                    lastName: lastName!,
+                                  );
                                 } else {
-                                  showSnackBar(
-                                      context, 'please try again');
+                                  showSnackBar(context, 'please try again');
                                 }
                               },
                             ),
