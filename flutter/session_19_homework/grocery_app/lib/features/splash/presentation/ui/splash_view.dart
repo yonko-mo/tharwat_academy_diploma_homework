@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/app_constants.dart';
 import 'package:grocery_app/core/constants/assets.dart';
+import 'package:grocery_app/core/services/firebase_auth_service.dart';
 import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
 import 'package:grocery_app/features/home/presentation/ui/home_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grocery_app/features/authentication/login/presentation/ui/login_view.dart';
 import 'package:grocery_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
@@ -29,6 +29,8 @@ class _SplashViewState extends State<SplashView> {
         ) ??
         false;
 
+    final authService = FirebaseAuthService();
+
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
       if (!hasSeenOnboarding) {
@@ -38,7 +40,7 @@ class _SplashViewState extends State<SplashView> {
           ),
         );
       } else {
-        final user = FirebaseAuth.instance.currentUser;
+        final user = authService.currentUser;
         if (user != null) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
@@ -68,3 +70,4 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 }
+

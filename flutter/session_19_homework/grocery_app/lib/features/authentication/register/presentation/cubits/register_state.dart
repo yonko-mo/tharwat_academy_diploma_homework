@@ -1,15 +1,15 @@
 abstract class RegisterState {}
 
-class RegisterInitial extends RegisterState {}
+class RegisterInitialState extends RegisterState {}
 
-class RegisterLoading extends RegisterState {}
+class RegisterLoadingState extends RegisterState {}
 
-class RegisterSuccess extends RegisterState {
+class RegisterSuccessState extends RegisterState {
   final String userName;
-  RegisterSuccess(this.userName);
+  RegisterSuccessState(this.userName);
 }
 
-class RegisterError extends RegisterState {
+class RegisterErrorState extends RegisterState {
   final String message;
-  RegisterError(this.message);
+  RegisterErrorState(this.message);
 }

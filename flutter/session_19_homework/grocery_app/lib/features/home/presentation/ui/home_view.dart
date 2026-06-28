@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery_app/core/services/firebase_auth_service.dart';
+import 'package:grocery_app/core/services/firestore_service.dart';
+import 'package:grocery_app/features/home/data/repos/home_repository.dart';
 import 'package:grocery_app/core/theme/app_styles.dart';
 import 'package:grocery_app/features/home/presentation/cubits/home_cubit.dart';
 import 'package:grocery_app/features/home/presentation/cubits/home_state.dart';
@@ -10,7 +13,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..loadUserData(),
+      create: (context) => HomeCubit(
+        HomeRepository(
+          authService: FirebaseAuthService(),
+          firestoreService: FirestoreService(),
+        ),
+      )..loadUserData(),
+
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
