@@ -115,4 +115,18 @@ class AppStyles {
     color: AppColors.primaryColor,
     fontWeight: FontWeight.bold,
   );
+
+  static const TextStyle trendingItemNameStyle = TextStyle(
+    color: AppColors.lightGrayBackground,
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const TextStyle trendingItemPriceStyle = TextStyle(
+    color: AppColors.lightGrayBackground,
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w700,
+  );
 }

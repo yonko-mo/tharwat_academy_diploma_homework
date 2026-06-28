@@ -78,10 +78,7 @@ class _LoginFormState extends State<LoginForm> {
             isLoading: widget.state is LoginLoadingState,
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                context.read<LoginCubit>().signIn(
-                      _email!,
-                      _password!,
-                    );
+                context.read<LoginCubit>().signIn(_email!, _password!);
               } else {
                 showSnackBar(context, 'please try again');
               }
