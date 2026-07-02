@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
+import 'package:grocery_app/core/constants/assets.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -67,8 +68,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           CustomNavigationBarItem(
             icon: const CircleAvatar(
               radius: 14,
-              backgroundImage: NetworkImage(
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=120&auto=format&fit=crop',
+              backgroundImage: AssetImage(
+                Assets.assetsImagesPngsProfilePlaceholder,
               ),
             ),
           ),

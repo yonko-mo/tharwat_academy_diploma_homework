@@ -209,4 +209,8 @@ class Assets {
   /// Assets for assetsImagesPngsTomatoesImage
   static const String assetsImagesPngsTomatoesImage =
       "assets/images/Pngs/tomatoes_image.png";
+
+  /// Assets for assetsImagesPngsProfilePlaceholder
+  static const String assetsImagesPngsProfilePlaceholder =
+      "assets/images/Pngs/profile_placeholder.png";
 }
