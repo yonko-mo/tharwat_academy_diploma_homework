@@ -21,7 +21,6 @@ class HomeView extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            // ── Header: greeting + username + notification ─────────
             SliverPadding(
               padding: const EdgeInsets.only(left: 28, right: 28),
               sliver: SliverToBoxAdapter(
@@ -68,7 +67,6 @@ class HomeView extends StatelessWidget {
               ),
             ),
 
-            // ── Ads banner (horizontal list) ───────────────────────
             const SliverPadding(
               padding: EdgeInsets.only(left: 28),
               sliver: SliverToBoxAdapter(child: AdsListView()),
@@ -76,7 +74,6 @@ class HomeView extends StatelessWidget {
 
             const SliverToBoxAdapter(child: SizedBox(height: 30)),
 
-            // ── Categories section ─────────────────────────────────
             const SliverPadding(
               padding: EdgeInsets.only(left: 28),
               sliver: SliverToBoxAdapter(child: CategorySection()),
@@ -84,7 +81,6 @@ class HomeView extends StatelessWidget {
 
             const SliverToBoxAdapter(child: SizedBox(height: 30)),
 
-            // ── Trending Deals: section header ─────────────────────
             SliverPadding(
               padding: const EdgeInsets.only(left: 28),
               sliver: SliverToBoxAdapter(
@@ -94,13 +90,11 @@ class HomeView extends StatelessWidget {
 
             const SliverToBoxAdapter(child: SizedBox(height: 13)),
 
-            // ── Trending Deals: SliverGrid (no fixed height needed) ─
             const SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: 28),
               sliver: TrendingDealsGridView(),
             ),
 
-            // ── More button ────────────────────────────────────────
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
