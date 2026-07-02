@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/app_constants.dart';
 import 'package:grocery_app/core/constants/assets.dart';
-import 'package:grocery_app/core/services/firebase_auth_service.dart';
 import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
+import 'package:grocery_app/core/services/firebase_auth_service.dart';
 import 'package:grocery_app/features/home/presentation/ui/home_view.dart';
-import 'package:grocery_app/features/authentication/login/presentation/ui/login_view.dart';
+import 'package:grocery_app/features/authentication/sign%20in/presentation/ui/sign_in_view.dart';
 import 'package:grocery_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -40,8 +40,7 @@ class _SplashViewState extends State<SplashView> {
           ),
         );
       } else {
-        final user = authService.currentUser;
-        if (user != null) {
+        if (authService.currentUser != null) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (BuildContext context) => const HomeView(),
@@ -50,13 +49,14 @@ class _SplashViewState extends State<SplashView> {
         } else {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (BuildContext context) => const LoginView(),
+              builder: (BuildContext context) => const SignInView(),
             ),
           );
         }
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,4 +70,3 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 }
-

@@ -3,9 +3,8 @@ import 'package:grocery_app/core/theme/app_styles.dart';
 
 class AuthHeader extends StatelessWidget {
   final String title;
-  final VoidCallback onClose;
 
-  const AuthHeader({super.key, required this.title, required this.onClose});
+  const AuthHeader({super.key, required this.title,});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,9 @@ class AuthHeader extends StatelessWidget {
       children: [
         Text(title, style: AppStyles.authHeaderStyle),
         GestureDetector(
-          onTap: onClose,
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Container(
             padding: const EdgeInsets.all(4),
             decoration: const BoxDecoration(

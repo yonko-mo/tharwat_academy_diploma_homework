@@ -12,8 +12,8 @@ class GetUserCubit extends Cubit<GetUserState> {
     try {
       final profile = await _homeRepository.getUserProfile();
       emit(GetUserLoadedState(
-        firstName: profile['firstName'] ?? '',
-        lastName: profile['lastName'] ?? '',
+        firstName: profile.firstName,
+        lastName: profile.lastName,
       ));
     } catch (e) {
       emit(GetUserErrorState(e.toString()));

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
+import 'package:grocery_app/features/authentication/create_account/presentation/ui/create_account_view.dart';
+import 'package:grocery_app/features/authentication/sign%20in/presentation/ui/sign_in_view.dart';
 
 class OnboardingButtons extends StatelessWidget {
   final int currentPage;
   final int itemCount;
   final VoidCallback onNextPressed;
-  final VoidCallback onCreateAccountPressed;
-  final VoidCallback onLoginPressed;
 
   const OnboardingButtons({
     super.key,
     required this.currentPage,
     required this.itemCount,
     required this.onNextPressed,
-    required this.onCreateAccountPressed,
-    required this.onLoginPressed,
   });
 
   @override
@@ -26,7 +24,13 @@ class OnboardingButtons extends StatelessWidget {
             text: 'CREATE AN ACCOUNT',
             backgroundColor: Colors.black,
             textColor: Colors.white,
-            onPressed: onCreateAccountPressed,
+            onPressed: (){
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const CreateAccountView(),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 18),
           CustomElevatedButton(
@@ -34,7 +38,11 @@ class OnboardingButtons extends StatelessWidget {
             backgroundColor: Colors.white,
             textColor: Colors.black,
             border: const BorderSide(color: Colors.black, width: 2),
-            onPressed: onLoginPressed,
+            onPressed: (){
+               Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const SignInView()),
+              );
+            },
           ),
         ],
       );

@@ -4,24 +4,22 @@ import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/core/helper/validators.dart';
 import 'package:grocery_app/core/theme/app_styles.dart';
 import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
-import 'package:grocery_app/features/authentication/login/presentation/cubits/login_cubit.dart';
-import 'package:grocery_app/features/authentication/login/presentation/cubits/login_state.dart';
+import 'package:grocery_app/features/authentication/sign in/presentation/cubits/sign_in_cubit.dart';
 import 'package:grocery_app/features/authentication/widgets/auth_header.dart';
 import 'package:grocery_app/features/authentication/widgets/custom_text_form_field.dart';
+import 'package:grocery_app/features/authentication/widgets/password_text_form_field.dart';
 
-class LoginForm extends StatefulWidget {
-  final LoginState state;
-  const LoginForm({super.key, required this.state});
+class SignInForm extends StatefulWidget {
+  const SignInForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<SignInForm> createState() => _SignInFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _email;
   String? _password;
-  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +28,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AuthHeader(
-            title: 'Sign In',
-            onClose: () => Navigator.of(context).pop(),
-          ),
+          const AuthHeader(title: 'Sign In'),
           const SizedBox(height: 32),
           CustomTextFormField(
             hintText: 'Email Address',
@@ -42,24 +37,9 @@ class _LoginFormState extends State<LoginForm> {
             validator: Validators.validateEmail,
           ),
           const SizedBox(height: 12),
-          CustomTextFormField(
-            obscureText: _obscurePassword,
-            hintText: 'Password',
+          PasswordTextFormField(
             onChanged: (data) => _password = data,
             validator: Validators.validatePassword,
-            suffixIcon: IconButton(
-              icon: Icon(
-                _obscurePassword
-                    ? Icons.visibility_off_outlined
-                    : Icons.visibility_outlined,
-                color: Colors.grey,
-              ),
-              onPressed: () {
-                setState(() {
-                  _obscurePassword = !_obscurePassword;
-                });
-              },
-            ),
           ),
           const SizedBox(height: 12),
           Align(
@@ -75,10 +55,9 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 42),
           CustomElevatedButton(
             text: 'SIGN IN',
-            isLoading: widget.state is LoginLoadingState,
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                context.read<LoginCubit>().signIn(_email!, _password!);
+                context.read<SignInCubit>().signIn(_email!, _password!);
               } else {
                 showSnackBar(context, 'please try again');
               }

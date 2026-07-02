@@ -1,39 +1,30 @@
+import 'package:grocery_app/core/errors/custom_exception.dart';
 import 'package:grocery_app/core/services/firebase_auth_service.dart';
 import 'package:grocery_app/core/services/firestore_service.dart';
+import 'package:grocery_app/features/authentication/domain/models/user_model.dart';
 
 class HomeRepository {
-  final FirebaseAuthService authService;
-  final FirestoreService firestoreService;
+  final FirebaseAuthService _authService;
+  final FirestoreService _firestoreService;
 
   HomeRepository({
-    required this.authService,
-    required this.firestoreService,
-  });
+    FirebaseAuthService? authService,
+    FirestoreService? firestoreService,
+  })  : _authService = authService ?? FirebaseAuthService(),
+        _firestoreService = firestoreService ?? FirestoreService();
 
-  Future<Map<String, String>> getUserProfile() async {
-    final user = authService.currentUser;
+  Future<UserModel> getUserProfile() async {
+    final user = _authService.currentUser;
     if (user == null) {
-      throw 'No user is currently logged in.';
+      throw CustomException('No user is currently logged in.');
     }
 
-    try {
-      final doc = await firestoreService.getUserData(uid: user.uid);
-      if (doc.exists) {
-        final data = doc.data();
-        final firstName = data?['firstName'] ?? '';
-        final lastName = data?['lastName'] ?? '';
-        return {
-          'firstName': firstName,
-          'lastName': lastName,
-        };
-      } else {
-        return {
-          'firstName': '',
-          'lastName': '',
-        };
-      }
-    } catch (e) {
-      throw 'Failed to load user data';
+    final doc = await _firestoreService.getUserData(uid: user.uid);
+    if (doc.exists) {
+      final data = doc.data() ?? {};
+      return UserModel.fromMap(data);
+    } else {
+      return const UserModel(firstName: '', lastName: '', email: '');
     }
   }
 }
