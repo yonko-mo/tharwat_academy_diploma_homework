@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery_app/core/errors/custom_exception.dart';
+import 'package:grocery_app/features/authentication/domain/models/user_model.dart';
 import 'package:grocery_app/features/authentication/domain/repos/auth_repo.dart';
 import 'package:grocery_app/features/authentication/create_account/presentation/cubits/create_account_state.dart';
 
@@ -9,22 +11,15 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
     : super(CreateAccountInitialState());
 
   Future<void> createAccount({
-    required String email,
+    required UserModel user,
     required String password,
-    required String firstName,
-    required String lastName,
   }) async {
     emit(CreateAccountLoadingState());
     try {
-      await _authRepo.createAccount(
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-      );
-      emit(CreateAccountSuccessState('$firstName $lastName'));
-    } catch (e) {
-      emit(CreateAccountErrorState(e.toString()));
+      await _authRepo.createAccount(user: user, password: password);
+      emit(CreateAccountSuccessState('${user.firstName} ${user.lastName}'));
+    } on CustomException catch (e) {
+      emit(CreateAccountErrorState(e.message));
     }
   }
 }

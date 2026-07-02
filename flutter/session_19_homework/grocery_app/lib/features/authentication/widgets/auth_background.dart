@@ -13,7 +13,7 @@ class AuthBackground extends StatelessWidget {
           top: 0,
           left: 0,
           right: 0,
-          height: MediaQuery.sizeOf(context).height * 0.4,
+          height: 389 / 812 * MediaQuery.sizeOf(context).height,
           child: Image.asset(imagePath, fit: BoxFit.cover),
         ),
         Positioned(

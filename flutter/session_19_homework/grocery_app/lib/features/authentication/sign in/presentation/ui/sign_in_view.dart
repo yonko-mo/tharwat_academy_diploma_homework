@@ -29,7 +29,9 @@ class SignInView extends StatelessWidget {
             showSnackBar(context, 'login success');
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const HomeView()),
+              MaterialPageRoute(
+                builder: (context) => HomeView(user: state.user),
+              ),
             );
           } else if (state is SignInErrorState) {
             showSnackBar(context, state.message);
@@ -45,10 +47,10 @@ class SignInView extends StatelessWidget {
                 ModalProgressHUD(
                   inAsyncCall: state is SignInLoadingState,
                   child: Positioned(
-                    top: MediaQuery.sizeOf(context).height * 0.35,
                     left: 0,
                     right: 0,
                     bottom: 0,
+                    height: 450 / 812 * MediaQuery.sizeOf(context).height,
                     child: const SignInBottomSheet(),
                   ),
                 ),

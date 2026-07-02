@@ -4,33 +4,37 @@ import 'package:grocery_app/core/errors/custom_exception.dart';
 class FirebaseAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Future<void> createAccount({
+  Future<UserCredential> createAccount({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      throw CustomException.fromFirebaseAuthException(e);
+      return userCredential;
+    } catch (e) {
+      throw CustomException.fromException(e);
     }
   }
 
-  Future<void> signInWithEmailAndPassword({
+  Future<UserCredential> signIn({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      final credential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      throw CustomException.fromFirebaseAuthException(e);
+      return credential;
+    } catch (e) {
+      throw CustomException.fromException(e);
     }
   }
 
-  User? get currentUser => _firebaseAuth.currentUser;
+  bool isLoggedIn() => _firebaseAuth.currentUser != null;
+
+  String? getUid() => _firebaseAuth.currentUser?.uid;
 }

@@ -47,10 +47,10 @@ class CreateAccountView extends StatelessWidget {
                 ModalProgressHUD(
                   inAsyncCall: state is CreateAccountLoadingState,
                   child: Positioned(
-                    top: MediaQuery.sizeOf(context).height * 0.35,
                     left: 0,
                     right: 0,
                     bottom: 0,
+                    height: 480 / 812 * MediaQuery.sizeOf(context).height,
                     child: const CreateAccountBottomSheet(),
                   ),
                 ),

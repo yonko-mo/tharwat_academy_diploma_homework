@@ -35,11 +35,29 @@ class CustomException implements Exception {
       case 'not-found':
         return CustomException('Requested data not found.');
       case 'unavailable':
-        return CustomException('Service is unavailable. Please try again later.');
+        return CustomException(
+          'Service is unavailable. Please try again later.',
+        );
       case 'deadline-exceeded':
         return CustomException('Request timed out. Please try again.');
       default:
         return CustomException(e.message ?? 'Database operation failed.');
+    }
+  }
+
+  factory CustomException.fromException(Object e) {
+    if (e is CustomException) {
+      return e;
+    } else if (e is FirebaseAuthException) {
+      return CustomException.fromFirebaseAuthException(e);
+    } else if (e is FirebaseException) {
+      return CustomException.fromFirebaseException(e);
+    } else {
+      String displayMsg = e.toString();
+      if (displayMsg.contains('Exception:')) {
+        displayMsg = displayMsg.replaceAll('Exception:', '').trim();
+      }
+      return CustomException(displayMsg);
     }
   }
 
