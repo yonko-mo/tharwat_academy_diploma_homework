@@ -14,8 +14,8 @@ class CategoriesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 4.8,
+    return SizedBox(
+      height: 73,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: _imagePaths.length,

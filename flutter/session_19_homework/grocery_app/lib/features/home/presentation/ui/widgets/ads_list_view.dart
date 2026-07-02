@@ -18,8 +18,8 @@ class AdsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2.2,
+    return SizedBox(
+      height: 162,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: _ads.length,

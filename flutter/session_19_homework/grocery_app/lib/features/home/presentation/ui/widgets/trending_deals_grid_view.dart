@@ -26,21 +26,27 @@ class TrendingDealsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverGrid(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 20,
-        childAspectRatio: 0.9,
-      ),
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => TrendingDealsItem(
-          itemImagePath: _items[index].imagePath,
-          itemName: _items[index].name,
-          itemPrice: _items[index].price,
+    return CustomScrollView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      slivers: [
+        SliverGrid(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
+            childAspectRatio: 0.9,
+          ),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => TrendingDealsItem(
+              itemImagePath: _items[index].imagePath,
+              itemName: _items[index].name,
+              itemPrice: _items[index].price,
+            ),
+            childCount: _items.length,
+          ),
         ),
-        childCount: _items.length,
-      ),
+      ],
     );
   }
 }
