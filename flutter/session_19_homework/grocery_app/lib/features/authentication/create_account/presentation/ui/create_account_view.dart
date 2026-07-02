@@ -8,6 +8,7 @@ import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/features/authentication/data/repos/firebase_auth_repo.dart';
 import 'package:grocery_app/features/authentication/create_account/presentation/cubits/create_account_cubit.dart';
 import 'package:grocery_app/features/authentication/create_account/presentation/cubits/create_account_state.dart';
+import 'package:grocery_app/features/authentication/sign%20in/presentation/ui/sign_in_view.dart';
 import 'package:grocery_app/features/authentication/create_account/presentation/ui/widgets/registration_success_dialog.dart';
 import 'package:grocery_app/features/authentication/create_account/presentation/ui/widgets/create_account_bottom_sheet.dart';
 import 'package:grocery_app/features/authentication/widgets/auth_background.dart';
@@ -27,12 +28,18 @@ class CreateAccountView extends StatelessWidget {
               true,
             );
             showSnackBar(context, 'registration success');
-            showDialog(
+            showDialog<bool>(
               context: context,
               barrierDismissible: false,
               builder: (context) =>
                   RegistrationSuccessDialog(userName: state.userName),
-            );
+            ).then((value) {
+              if (value == true && context.mounted) {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const SignInView()),
+                );
+              }
+            });
           } else if (state is CreateAccountErrorState) {
             showSnackBar(context, state.message);
           }

@@ -25,6 +25,7 @@ class FirebaseAuthRepo implements AuthRepo {
       collectionPath: 'users',
       documentId: userCredential.user!.uid,
     );
+    await _authService.signOut();
   }
 
   @override

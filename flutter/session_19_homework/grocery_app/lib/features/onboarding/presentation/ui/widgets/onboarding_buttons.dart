@@ -24,7 +24,7 @@ class OnboardingButtons extends StatelessWidget {
             text: 'CREATE AN ACCOUNT',
             backgroundColor: Colors.black,
             textColor: Colors.white,
-            onPressed: (){
+            onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const CreateAccountView(),
@@ -38,8 +38,8 @@ class OnboardingButtons extends StatelessWidget {
             backgroundColor: Colors.white,
             textColor: Colors.black,
             border: const BorderSide(color: Colors.black, width: 2),
-            onPressed: (){
-               Navigator.of(context).push(
+            onPressed: () {
+              Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const SignInView()),
               );
             },

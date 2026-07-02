@@ -2,29 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/features/home/presentation/ui/widgets/category_item.dart';
 
-class CategoriesListView extends StatefulWidget {
+class CategoriesListView extends StatelessWidget {
   const CategoriesListView({super.key});
 
-  @override
-  State<CategoriesListView> createState() => _CategoriesListViewState();
-}
-
-class _CategoriesListViewState extends State<CategoriesListView> {
-  final List<CategoryItem> categories = const [
-    CategoryItem(imagePath: Assets.assetsImagesPngsFruitsImage),
-    CategoryItem(imagePath: Assets.assetsImagesPngsMushroomImage),
-    CategoryItem(imagePath: Assets.assetsImagesPngsDairyImage),
-    CategoryItem(imagePath: Assets.assetsImagesPngsOatsImage),
+  static const List<String> _imagePaths = [
+    Assets.assetsImagesPngsFruitsImage,
+    Assets.assetsImagesPngsMushroomImage,
+    Assets.assetsImagesPngsDairyImage,
+    Assets.assetsImagesPngsOatsImage,
   ];
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 73,
+    return AspectRatio(
+      aspectRatio: 4.8,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
+        itemCount: _imagePaths.length,
         itemBuilder: (context, index) =>
-            CategoryItem(imagePath: categories[index].imagePath),
+            CategoryItem(imagePath: _imagePaths[index]),
         separatorBuilder: (context, index) => const SizedBox(width: 10),
       ),
     );

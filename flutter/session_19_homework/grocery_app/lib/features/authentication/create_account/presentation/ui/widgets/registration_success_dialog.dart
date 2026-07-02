@@ -56,8 +56,7 @@ class RegistrationSuccessDialog extends StatelessWidget {
               backgroundColor: AppColors.primaryColor,
               textColor: Colors.black,
               onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(true);
               },
             ),
           ],

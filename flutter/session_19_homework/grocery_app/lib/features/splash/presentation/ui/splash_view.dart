@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/app_constants.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/core/services/firebase_auth_service.dart';
 import 'package:grocery_app/core/services/firestore_service.dart';
-import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
 import 'package:grocery_app/features/authentication/domain/models/user_model.dart';
-import 'package:grocery_app/features/authentication/sign in/presentation/ui/sign_in_view.dart';
 import 'package:grocery_app/features/home/presentation/ui/home_view.dart';
 import 'package:grocery_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
@@ -28,23 +25,11 @@ class _SplashViewState extends State<SplashView> {
   }
 
   Future<void> executeNavigation() async {
-    final bool hasSeenOnboarding =
-        SharedPreferencesSingleton.instance.getBool(
-          AppConstants.onboardingSeen,
-        ) ??
-        false;
-
     await Future.delayed(const Duration(seconds: 3));
 
     if (!mounted) return;
 
-    if (!hasSeenOnboarding) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const OnboardingView()),
-      );
-    } else if (_authService.isLoggedIn()) {
-      // User is already logged in — fetch their profile to pass to HomeView
-      // so we don't need a cubit or extra fetch inside the home screen.
+    if (_authService.isLoggedIn()) {
       UserModel? user;
       final uid = _authService.getUid();
       if (uid != null) {
@@ -61,7 +46,7 @@ class _SplashViewState extends State<SplashView> {
       );
     } else {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const SignInView()),
+        MaterialPageRoute(builder: (context) => const OnboardingView()),
       );
     }
   }
