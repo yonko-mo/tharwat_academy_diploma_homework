@@ -19,41 +19,52 @@ class HomeView extends StatelessWidget {
       bottomNavigationBar: const CustomBottomNavigationBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HomeHeader(user: user),
-                const AdsListView(),
-                const SizedBox(height: 30),
-                const CategorySection(),
-                const SizedBox(height: 30),
-                Row(
-                  children: [
-                    Expanded(
-                      child: SectionHeader(
-                        title: 'Trending Deals',
-                        onPressed: () {},
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 28.0),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  HomeHeader(user: user),
+                  const AdsListView(),
+                  const SizedBox(height: 30),
+                  const CategorySection(),
+                  const SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SectionHeader(
+                          title: 'Trending Deals',
+                          onPressed: () {},
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 20),
-                  ],
-                ),
-                const SizedBox(height: 13),
-                const TrendingDealsGridView(),
-                const SizedBox(height: 40),
-                CustomElevatedButton(
-                  text: 'More',
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-                const SizedBox(height: 40),
-              ],
+                      const SizedBox(width: 20),
+                    ],
+                  ),
+                  const SizedBox(height: 13),
+                ]),
+              ),
             ),
-          ),
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 28.0),
+              sliver: TrendingDealsGridView(),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 28.0),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  const SizedBox(height: 40),
+                  CustomElevatedButton(
+                    text: 'More',
+                    backgroundColor: Colors.black,
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                  const SizedBox(height: 40),
+                ]),
+              ),
+            ),
+          ],
         ),
       ),
     );
