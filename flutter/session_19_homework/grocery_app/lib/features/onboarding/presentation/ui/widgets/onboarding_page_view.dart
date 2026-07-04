@@ -14,7 +14,7 @@ class OnboardingPageView extends StatefulWidget {
 
 class _OnboardingPageViewState extends State<OnboardingPageView> {
   late final PageController _pageController;
-  late final ValueNotifier<int> _currentPage;
+  int _currentPage = 0;
 
   final List<OnboardingItemModel> _items = const [
     OnboardingItemModel(
@@ -45,13 +45,11 @@ class _OnboardingPageViewState extends State<OnboardingPageView> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    _currentPage = ValueNotifier<int>(0);
   }
 
   @override
   void dispose() {
     _pageController.dispose();
-    _currentPage.dispose();
     super.dispose();
   }
 
@@ -64,35 +62,29 @@ class _OnboardingPageViewState extends State<OnboardingPageView> {
           child: PageView.builder(
             controller: _pageController,
             itemCount: _items.length,
-            onPageChanged: (index) => _currentPage.value = index,
+            onPageChanged: (index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
             itemBuilder: (context, index) {
               return OnboardingPageItem(item: _items[index]);
             },
           ),
         ),
         const SizedBox(height: 24),
-        ValueListenableBuilder<int>(
-          valueListenable: _currentPage,
-          builder: (context, currentPage, _) {
-            return OnboardingDotsIndicator(
-              currentPage: currentPage,
-              itemCount: _items.length,
-            );
-          },
+        OnboardingDotsIndicator(
+          currentPage: _currentPage,
+          itemCount: _items.length,
         ),
         const SizedBox(height: 41),
-        ValueListenableBuilder<int>(
-          valueListenable: _currentPage,
-          builder: (context, currentPage, _) {
-            return OnboardingButtons(
-              currentPage: currentPage,
-              itemCount: _items.length,
-              onNextPressed: () {
-                _pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
+        OnboardingButtons(
+          currentPage: _currentPage,
+          itemCount: _items.length,
+          onNextPressed: () {
+            _pageController.nextPage(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
             );
           },
         ),
