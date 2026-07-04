@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/core/services/firebase_auth_service.dart';
-import 'package:grocery_app/core/services/firestore_service.dart';
+import 'package:grocery_app/core/services/user_local_storage_service.dart';
 import 'package:grocery_app/core/theme/app_colors.dart';
-import 'package:grocery_app/features/authentication/domain/models/user_model.dart';
 import 'package:grocery_app/features/home/presentation/ui/home_view.dart';
 import 'package:grocery_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
@@ -16,7 +15,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   final _authService = FirebaseAuthService();
-  final _firestoreService = FirestoreService();
+  final _userLocalStorage = UserLocalStorageService();
 
   @override
   void initState() {
@@ -30,15 +29,7 @@ class _SplashViewState extends State<SplashView> {
     if (!mounted) return;
 
     if (_authService.isLoggedIn()) {
-      UserModel? user;
-      final uid = _authService.getUid();
-      if (uid != null) {
-        final data = await _firestoreService.getDocument(
-          collectionPath: 'users',
-          documentId: uid,
-        );
-        if (data != null) user = UserModel.fromJson(data);
-      }
+      final user = _userLocalStorage.getUser();
 
       if (!mounted) return;
       Navigator.of(context).pushReplacement(
