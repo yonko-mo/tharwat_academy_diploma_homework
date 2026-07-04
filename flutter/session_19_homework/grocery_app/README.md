@@ -1,22 +1,12 @@
 # 🛒 Grocery App
 
-A Flutter e-commerce grocery application built as a homework project for **Session 19** of the Tharwat Samy Live Course. The app features Firebase Authentication, Firestore data persistence, local user caching, and a clean feature-based architecture.
+A Flutter e-commerce application for browsing and discovering grocery deals. It features Firebase Authentication, Firestore data persistence, local user caching with SharedPreferences, and a clean feature-based architecture.
 
 ---
 
 ## 📹 Demo Video
 
-> **Add your recorded video here.**
->
-> Replace the placeholder below with your actual video file or link:
-
-<!-- Option 1: GitHub video embed (drag & drop your .mp4 into the PR/issue and paste the link here) -->
-<!-- Option 2: YouTube link -->
-
-[![Demo Video](https://img.shields.io/badge/Watch%20Demo-Click%20Here-red?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
-
-<!-- If uploading directly to GitHub, delete the badge above and use this instead: -->
-<!-- https://github.com/YOUR_USERNAME/YOUR_REPO/assets/YOUR_ASSET_ID/your-video.mp4 -->
+https://github.com/user-attachments/assets/5df9a18c-52f5-4ded-8716-14c120591de0
 
 ---
 
