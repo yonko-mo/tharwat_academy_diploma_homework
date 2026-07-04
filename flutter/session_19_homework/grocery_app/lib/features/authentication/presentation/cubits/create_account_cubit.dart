@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_app/core/errors/custom_exception.dart';
 import 'package:grocery_app/features/authentication/domain/models/user_model.dart';
 import 'package:grocery_app/features/authentication/domain/repos/auth_repo.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/cubits/create_account_state.dart';
+import 'package:grocery_app/features/authentication/presentation/cubits/create_account_state.dart';
 
 class CreateAccountCubit extends Cubit<CreateAccountState> {
   final AuthRepo _authRepo;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/ui/widgets/create_account_form.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/create_account_form.dart';
 
 class CreateAccountBottomSheet extends StatelessWidget {
   const CreateAccountBottomSheet({super.key});

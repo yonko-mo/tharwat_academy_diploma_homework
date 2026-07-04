@@ -6,10 +6,10 @@ import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/features/authentication/data/repos/firebase_auth_repo.dart';
-import 'package:grocery_app/features/authentication/sign in/presentation/cubits/sign_in_cubit.dart';
-import 'package:grocery_app/features/authentication/sign in/presentation/cubits/sign_in_state.dart';
-import 'package:grocery_app/features/authentication/sign in/presentation/ui/widgets/sign_in_bottom_sheet.dart';
-import 'package:grocery_app/features/authentication/widgets/auth_background.dart';
+import 'package:grocery_app/features/authentication/presentation/cubits/sign_in_cubit.dart';
+import 'package:grocery_app/features/authentication/presentation/cubits/sign_in_state.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/sign_in_bottom_sheet.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/auth_background.dart';
 import 'package:grocery_app/features/home/presentation/ui/home_view.dart';
 
 class SignInView extends StatelessWidget {

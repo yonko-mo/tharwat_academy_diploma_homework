@@ -6,12 +6,12 @@ import 'package:grocery_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_app/core/constants/assets.dart';
 import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/features/authentication/data/repos/firebase_auth_repo.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/cubits/create_account_cubit.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/cubits/create_account_state.dart';
-import 'package:grocery_app/features/authentication/sign%20in/presentation/ui/sign_in_view.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/ui/widgets/registration_success_dialog.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/ui/widgets/create_account_bottom_sheet.dart';
-import 'package:grocery_app/features/authentication/widgets/auth_background.dart';
+import 'package:grocery_app/features/authentication/presentation/cubits/create_account_cubit.dart';
+import 'package:grocery_app/features/authentication/presentation/cubits/create_account_state.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/sign_in_view.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/registration_success_dialog.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/create_account_bottom_sheet.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/auth_background.dart';
 
 class CreateAccountView extends StatelessWidget {
   const CreateAccountView({super.key});

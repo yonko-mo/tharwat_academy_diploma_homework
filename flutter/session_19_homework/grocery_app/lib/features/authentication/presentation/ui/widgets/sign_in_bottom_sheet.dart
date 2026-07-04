@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/features/authentication/sign in/presentation/ui/widgets/sign_in_form.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/sign_in_form.dart';
 
 class SignInBottomSheet extends StatelessWidget {
   const SignInBottomSheet({super.key});

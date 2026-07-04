@@ -4,10 +4,10 @@ import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/core/helper/validators.dart';
 import 'package:grocery_app/core/theme/app_styles.dart';
 import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
-import 'package:grocery_app/features/authentication/sign in/presentation/cubits/sign_in_cubit.dart';
-import 'package:grocery_app/features/authentication/widgets/auth_header.dart';
-import 'package:grocery_app/features/authentication/widgets/custom_text_form_field.dart';
-import 'package:grocery_app/features/authentication/widgets/password_text_form_field.dart';
+import 'package:grocery_app/features/authentication/presentation/cubits/sign_in_cubit.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/auth_header.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/custom_text_form_field.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/password_text_form_field.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});

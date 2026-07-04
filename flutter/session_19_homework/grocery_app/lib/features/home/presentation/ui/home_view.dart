@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 28.0),
+            padding: const EdgeInsets.symmetric(horizontal: 28.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -42,19 +42,13 @@ class HomeView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 13),
-                const Padding(
-                  padding: EdgeInsets.only(right: 28.0),
-                  child: TrendingDealsGridView(),
-                ),
+                const TrendingDealsGridView(),
                 const SizedBox(height: 40),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                  child: CustomElevatedButton(
-                    text: 'More',
-                    backgroundColor: Colors.black,
-                    textColor: Colors.white,
-                    onPressed: () {},
-                  ),
+                CustomElevatedButton(
+                  text: 'More',
+                  backgroundColor: Colors.black,
+                  textColor: Colors.white,
+                  onPressed: () {},
                 ),
                 const SizedBox(height: 40),
               ],

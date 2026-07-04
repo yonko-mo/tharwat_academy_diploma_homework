@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/features/authentication/widgets/custom_text_form_field.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/custom_text_form_field.dart';
 
 class PasswordTextFormField extends StatefulWidget {
   final ValueChanged<String>? onChanged;

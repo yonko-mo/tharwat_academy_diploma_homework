@@ -4,11 +4,11 @@ import 'package:grocery_app/core/helper/show_snack_bar.dart';
 import 'package:grocery_app/core/helper/validators.dart';
 import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
 import 'package:grocery_app/features/authentication/domain/models/user_model.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/cubits/create_account_cubit.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/ui/widgets/terms_and_conditions_text.dart';
-import 'package:grocery_app/features/authentication/widgets/auth_header.dart';
-import 'package:grocery_app/features/authentication/widgets/custom_text_form_field.dart';
-import 'package:grocery_app/features/authentication/widgets/password_text_form_field.dart';
+import 'package:grocery_app/features/authentication/presentation/cubits/create_account_cubit.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/terms_and_conditions_text.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/auth_header.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/custom_text_form_field.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/widgets/password_text_form_field.dart';
 
 class CreateAccountForm extends StatefulWidget {
   const CreateAccountForm({super.key});

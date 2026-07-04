@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/core/widgets/custom_elevated_button.dart';
-import 'package:grocery_app/features/authentication/create_account/presentation/ui/create_account_view.dart';
-import 'package:grocery_app/features/authentication/sign%20in/presentation/ui/sign_in_view.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/create_account_view.dart';
+import 'package:grocery_app/features/authentication/presentation/ui/sign_in_view.dart';
 
 class OnboardingButtons extends StatelessWidget {
   final int currentPage;
