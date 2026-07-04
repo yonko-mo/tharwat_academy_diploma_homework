@@ -1,17 +1,160 @@
-# grocery_app
+# 🛒 Grocery App
 
-A new Flutter project.
+A Flutter e-commerce grocery application built as a homework project for **Session 19** of the Tharwat Samy Live Course. The app features Firebase Authentication, Firestore data persistence, local user caching, and a clean feature-based architecture.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📹 Demo Video
 
-A few resources to get you started if this is your first Flutter project:
+> **Add your recorded video here.**
+>
+> Replace the placeholder below with your actual video file or link:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+<!-- Option 1: GitHub video embed (drag & drop your .mp4 into the PR/issue and paste the link here) -->
+<!-- Option 2: YouTube link -->
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[![Demo Video](https://img.shields.io/badge/Watch%20Demo-Click%20Here-red?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
+
+<!-- If uploading directly to GitHub, delete the badge above and use this instead: -->
+<!-- https://github.com/YOUR_USERNAME/YOUR_REPO/assets/YOUR_ASSET_ID/your-video.mp4 -->
+
+---
+
+## ✨ Features
+
+- **Splash Screen** — Checks Firebase Auth state and routes the user to Home or Onboarding automatically
+- **Onboarding** — Multi-page intro carousel, shown **only once** (skipped permanently after first login via `SharedPreferences`)
+- **Sign Up** — Register with email & password; user data is stored in **Firestore** and the onboarding-seen flag is saved locally
+- **Sign In** — Authenticate via **Firebase Auth**; user document fetched from **Firestore** once and then cached in **SharedPreferences** for all future sessions
+- **Home Screen** — Personalized greeting using cached user data, trending deals grid, and bottom navigation bar
+- **Offline-first Auth** — On every app restart, the splash screen reads the user from local storage — **zero Firestore reads** after the first login
+
+---
+
+## 🏗️ Architecture
+
+The project follows a **feature-first clean architecture**:
+
+```
+lib/
+├── app_constants.dart          # Global constant keys
+├── main.dart                   # App entry point & initialization
+├── core/
+│   ├── constants/              # Generated asset references
+│   ├── errors/                 # Custom exception handling
+│   ├── helper/                 # Validators, snackbar helpers
+│   ├── services/               # Firebase Auth, Firestore, Local Storage
+│   ├── shared_preferences_singleton.dart
+│   ├── theme/                  # Colors, styles
+│   └── widgets/                # Reusable UI components
+└── features/
+    ├── authentication/
+    │   ├── data/repos/         # FirebaseAuthRepo (data source)
+    │   ├── domain/
+    │   │   ├── models/         # UserModel
+    │   │   └── repos/          # AuthRepo (abstract interface)
+    │   └── presentation/
+    │       ├── cubits/         # SignInCubit, CreateAccountCubit
+    │       └── ui/             # Views & widgets
+    ├── home/
+    ├── onboarding/
+    └── splash/
+```
+
+---
+
+## 🔧 Tech Stack
+
+| Category | Package |
+|---|---|
+| State Management | [`flutter_bloc`](https://pub.dev/packages/flutter_bloc) |
+| Backend Auth | [`firebase_auth`](https://pub.dev/packages/firebase_auth) |
+| Database | [`cloud_firestore`](https://pub.dev/packages/cloud_firestore) |
+| Local Storage | [`shared_preferences`](https://pub.dev/packages/shared_preferences) |
+| Loading Overlay | [`modal_progress_hud_nsn`](https://pub.dev/packages/modal_progress_hud_nsn) |
+| Navigation Bar | [`custom_navigation_bar`](https://pub.dev/packages/custom_navigation_bar) |
+| Fonts | Poppins, Inter, DM Sans |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK `^3.12.2`
+- A Firebase project with **Authentication** and **Firestore** enabled
+
+### Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd grocery_app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Configure Firebase**
+
+   Add your `google-services.json` (Android) and/or `GoogleService-Info.plist` (iOS) to the respective platform directories. The `firebase_options.dart` file is already generated.
+
+4. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+---
+
+## 📱 Screens
+
+| Screen | Description |
+|---|---|
+| Splash | Checks auth state; routes to Home or Onboarding |
+| Onboarding | 3-page intro carousel (shown once) |
+| Sign In | Email/password login via bottom sheet |
+| Create Account | Registration form with terms & conditions |
+| Home | Greeting, trending deals grid, "More" button |
+
+---
+
+## 🗂️ Key Implementation Notes
+
+### 🔥 Firebase Authentication
+
+User registration and login are handled entirely by **Firebase Auth**. The `FirebaseAuthService` wraps `createUserWithEmailAndPassword` and `signInWithEmailAndPassword`. After registration, the user is signed out immediately so they must explicitly log in.
+
+### 🗄️ Firestore — User Data
+
+When a user registers, their `firstName`, `lastName`, and `email` are saved as a document in the `users` Firestore collection, keyed by their Firebase UID. On first sign-in, this document is fetched to build the `UserModel`.
+
+### 💾 SharedPreferences — Two Use Cases
+
+The app uses `SharedPreferences` for two distinct persistence needs:
+
+#### 1. Skip Onboarding After First Login
+
+When a user successfully signs in or creates an account, the flag `onboarding_seen = true` is written to `SharedPreferences`. This ensures the onboarding flow is never shown again after the first session.
+
+```
+Sign In / Create Account success → setBool('onboarding_seen', true)
+App restart (logged in) → routed directly to HomeView, onboarding skipped
+```
+
+#### 2. Cache Authenticated User — Avoid Firestore on Restart
+
+After a successful sign-in, the fetched `UserModel` is serialized to JSON and stored in `SharedPreferences` under the key `cached_user`. On every subsequent app launch, the splash screen reads this local cache instead of making a Firestore network request.
+
+```
+First Sign In  → Firebase Auth → Firestore fetch → SharedPreferences.save → HomeView
+App restart    → Firebase Auth check → SharedPreferences.read → HomeView  ✅ no Firestore
+```
+
+The `UserLocalStorageService` manages this with three methods:
+- `saveUser(UserModel)` — serializes and saves after sign-in
+- `getUser()` — deserializes and returns cached user on splash
+- `clearUser()` — call this on sign-out to wipe local data
+
+---
